@@ -1,8 +1,10 @@
 name: Terraform Plan
 
 on:
+  push:
   pull_request:
-    branches: [ master ]
+    branches: 
+      - main
 
 jobs:
   terraform:
