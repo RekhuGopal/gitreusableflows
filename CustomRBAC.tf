@@ -1,4 +1,3 @@
-﻿
 #Create Custom RBAC using Terrafrom - CloudQuickPOCS
 resource "azurerm_role_definition" "CloudQuickPOCCustomRBAC" {
   name        = "POC-Custom-RBAC"
