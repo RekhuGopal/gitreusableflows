@@ -1,4 +1,4 @@
-# ARM provider block
+# ARM provider block -rekhu
 provider "azurerm" {
   version = "=2.0.0"
   features {}
