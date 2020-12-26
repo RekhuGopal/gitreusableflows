@@ -4,7 +4,7 @@ provider "azurerm" {
   features {}
 }
 
-# Terraform configuration block
+# Terraform backend configuration block -precreated
 terraform {
   backend "azurerm" {
     resource_group_name  = "rg-cloudquickpocs"
@@ -14,8 +14,8 @@ terraform {
   }
 }
 
-# RG creation
-resource "azurerm_resource_group" "rg-hello-azure" {
-  name     = "rg-cloudquickpocs"
+# RG creation 
+resource "azurerm_resource_group" "RG-githubaction-azure" {
+  name     = "rg-githubaction-cloudquickpocs"
   location = "northeurope"
 }
