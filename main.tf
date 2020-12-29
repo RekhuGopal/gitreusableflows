@@ -19,5 +19,3 @@ resource "azurerm_resource_group" "RG-githubaction-azure" {
   name     = "rg-githubaction-cloudquickpocs"
   location = "northeurope"
 }
-
-##just added
