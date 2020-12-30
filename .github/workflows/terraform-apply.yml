@@ -1,6 +1,7 @@
 name: Terraform Apply
 
 on: [push]
+    Branches: [main]
 
 jobs:
   terraform:

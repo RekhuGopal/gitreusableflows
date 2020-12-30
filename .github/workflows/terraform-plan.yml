@@ -1,6 +1,7 @@
 name: Terraform Plan
 
 on: [pull_request]
+    Branches: [FeatureBranch1]
 
 jobs:
   terraform:
