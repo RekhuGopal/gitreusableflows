@@ -30,21 +30,10 @@ resource "azurerm_storage_account" "example" {
 }
 
 # Create Azure storage account-2.
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "example2" {
   name                     = "quickpocstgaccnt0003"
   resource_group_name      = azurerm_resource_group.RG-githubaction-azure.name
   location                 = azurerm_resource_group.RG-githubaction-azure.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-}
-
-# Create a Azure keyvault
-resource "azurerm_key_vault" "example" {
-  name                       = "quickpocskeyvaut001"
-  location                   = azurerm_resource_group.RG-githubaction-azure.location
-  resource_group_name        = azurerm_resource_group.RG-githubaction-azure.name
-  tenant_id                  = ${{secrets.ARM_TENANT_ID}}
-  sku_name                   = "premium"
-  soft_delete_enabled        = true
-  soft_delete_retention_days = 7
 }
