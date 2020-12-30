@@ -1,6 +1,9 @@
 name: Terraform Plan
 
-on: [pull_request]
+on: 
+  push:
+   branches:
+     - FeatureBranch1
 
 jobs:
   terraform:

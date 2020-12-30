@@ -19,3 +19,12 @@ resource "azurerm_resource_group" "RG-githubaction-azure" {
   name     = "rg-githubaction-cloudquickpocs"
   location = "northeurope"
 }
+
+# Create storage account.
+resource "azurerm_storage_account" "example" {
+  name                     = "quickpocstgaccnt0001"
+  resource_group_name      = azurerm_resource_group.RG-githubaction-azure.name
+  location                 = azurerm_resource_group.RG-githubaction-azure.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
