@@ -20,7 +20,7 @@ resource "azurerm_resource_group" "RG-githubaction-azure" {
   location = "northeurope"
 }
 
-# Create storage account.
+# Create storage account-1.
 resource "azurerm_storage_account" "example" {
   name                     = "quickpocstgaccnt0002"
   resource_group_name      = azurerm_resource_group.RG-githubaction-azure.name
@@ -28,3 +28,14 @@ resource "azurerm_storage_account" "example" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
+
+# Create Azure storage account-2.
+resource "azurerm_storage_account" "example2" {
+  name                     = "quickpocstgaccnt0003"
+  resource_group_name      = azurerm_resource_group.RG-githubaction-azure.name
+  location                 = azurerm_resource_group.RG-githubaction-azure.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+#test
