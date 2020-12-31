@@ -45,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster_1" {
   }
 
   default_node_pool {
-    availability_zones   = [1, 2, 3]
+    availability_zones   = [1]
     enable_auto_scaling  = true
     max_count            = 3
     min_count            = 1
@@ -68,7 +68,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster_1" {
 
 # user node pools for - high performance and high availability
 resource "azurerm_kubernetes_cluster_node_pool" "usernodepool" {
-  availability_zones    = [1, 2, 3]
+  availability_zones    = [1]
   enable_auto_scaling   = true
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks_cluster_1.id
   max_count             = 3
