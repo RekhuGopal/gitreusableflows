@@ -22,9 +22,9 @@ resource "azurerm_log_analytics_workspace" "aks_law_1" {
   retention_in_days   = 30
 }
 
-#  Create AAD group
+#  Get AAD group
 data "azuread_group" "aks_administrators" {
-  name        = "${local.aks_cluster_name}-administrators"
+  name = "aks-CloudQuickPOCsRG001-administrators"
 }
 
 # Aks version
