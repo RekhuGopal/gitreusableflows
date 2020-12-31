@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "aks_rg_1" {
 resource "azurerm_log_analytics_workspace" "aks_law_1" {
   name                = "logs-${random_pet.aks_random_1.id}"
   location            = azurerm_resource_group.aks_rg_1.location
-  resource_group_name = azurerm_resource_group.aks_law_1.name
+  resource_group_name = azurerm_resource_group.aks_rg_1.name
   retention_in_days   = 30
 }
 
@@ -30,7 +30,7 @@ resource "azuread_group" "aks_administrators" {
 
 # Aks version
 data "azurerm_kubernetes_service_versions" "current" {
-  location = azurerm_resource_group.primary.location
+  location = azurerm_resource_group.aks_rg_1.location
 }
 
 # AKS cluster
