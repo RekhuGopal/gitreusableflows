@@ -22,11 +22,6 @@ resource "azurerm_log_analytics_workspace" "aks_law_1" {
   retention_in_days   = 30
 }
 
-#  Get AAD group
-data "azuread_group" "aks_administrators" {
-  name = "aks-CloudQuickPOCsRG001-administrators"
-}
-
 # Aks version
 data "azurerm_kubernetes_service_versions" "current" {
   location = azurerm_resource_group.aks_rg_1.location
@@ -66,7 +61,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster_1" {
     enabled = true
     azure_active_directory {
       managed                = true
-      admin_group_object_ids = [data.azuread_group.aks_administrators.object_id]
+      admin_group_object_ids = ["4188a639-d87a-437f-ba46-16d706088e20"]
     }
   }
 }
@@ -84,5 +79,3 @@ resource "azurerm_kubernetes_cluster_node_pool" "usernodepool" {
   os_disk_size_gb       = 1024
   vm_size               = "Standard_DS2_v2"
 }
-
-##
