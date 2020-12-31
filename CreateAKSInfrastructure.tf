@@ -23,9 +23,8 @@ resource "azurerm_log_analytics_workspace" "aks_law_1" {
 }
 
 #  Create AAD group
-resource "azuread_group" "aks_administrators" {
+data "azuread_group" "aks_administrators" {
   name        = "${local.aks_cluster_name}-administrators"
-  description = "Kubernetes administrators for the ${local.aks_cluster_name} cluster."
 }
 
 # Aks version
@@ -67,7 +66,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster_1" {
     enabled = true
     azure_active_directory {
       managed                = true
-      admin_group_object_ids = [azuread_group.aks_administrators.object_id]
+      admin_group_object_ids = [data.azuread_group.aks_administrators.object_id]
     }
   }
 }
