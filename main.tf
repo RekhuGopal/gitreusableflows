@@ -58,3 +58,5 @@ resource "azurerm_key_vault_secret" "quickpocskeyvaultsecrete" {
   value        = "000000"
   key_vault_id = azurerm_key_vault.quickpocskeyvault.id
 }
+
+#test
