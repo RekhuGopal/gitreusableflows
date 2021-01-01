@@ -1,9 +1,11 @@
+# Variable 'region'
 variable "regions" {
   type        = "list"
   default     = ["East US"]
   description = "Regions to deploy your resources, can be one or more. Defaults to East US and West US."
 }
 
+# Variable  'locals'
 locals {
   tags = {
     "managed"     = "By IaC"
@@ -12,6 +14,7 @@ locals {
   }
 }
 
+# Creates RG dynamically
 resource "azurerm_resource_group" "main" {
   name     = "MyDB-RG-${count.index}"
   location = "${element(var.regions, count.index)}"
@@ -19,6 +22,7 @@ resource "azurerm_resource_group" "main" {
   count    = "${length(var.regions)}"
 }
 
+# Creates SQL Server
 resource "azurerm_sql_server" "main" {
   name                         = "mytfqlserver-${count.index}"
   resource_group_name          = "${element(azurerm_resource_group.main.*.name, count.index)}"
@@ -30,6 +34,7 @@ resource "azurerm_sql_server" "main" {
   count                        = "${length(var.regions)}"
 }
 
+# Creates SQL Server firewall
 resource "azurerm_sql_firewall_rule" "main" {
   name                = "AllowAzureServices"
   resource_group_name = "${element(azurerm_resource_group.main.*.name, count.index)}"
@@ -39,6 +44,7 @@ resource "azurerm_sql_firewall_rule" "main" {
   count               = "${length(var.regions)}"
 }
 
+# Creates SQL DB
 resource "azurerm_sql_database" "main" {
   name                             = "mysqldatabase"
   resource_group_name              = "${azurerm_resource_group.main.*.name[0]}"
@@ -49,6 +55,7 @@ resource "azurerm_sql_database" "main" {
   tags                             = "${local.tags}"
 }
 
+# Creates RG deployment from jason
 resource "azurerm_template_deployment" "failovergroup" {
   name                = "failover"
   resource_group_name = "${azurerm_resource_group.main.*.name[0]}"
