@@ -55,12 +55,12 @@ resource "azurerm_template_deployment" "failovergroup" {
 
   template_body = "${file("Template/failover.json")}"
 
-  parameters {
-      sqlServerPrimaryName  = "${azurerm_sql_server.main.*.name[0]}"
-      sqlDatabaseName       = "${azurerm_sql_database.main.name}"
-      sqlFailoverGroupName  = "myfailover"
-      partnerServers        = "${join(",", slice(azurerm_sql_server.main.*.name, 1, length(var.regions)))}"
-      partnerResourceGroups = "${join(",", slice(azurerm_resource_group.main.*.name, 1, length(var.regions)))}"
+  parameters = {
+      "sqlServerPrimaryName"  = "${azurerm_sql_server.main.*.name[0]}"
+      "sqlDatabaseName"       = "${azurerm_sql_database.main.name}"
+      "sqlFailoverGroupName"  = "myfailover"
+      "partnerServers"        = "${join(",", slice(azurerm_sql_server.main.*.name, 1, length(var.regions)))}"
+      "partnerResourceGroups" = "${join(",", slice(azurerm_resource_group.main.*.name, 1, length(var.regions)))}"
   }
 
   deployment_mode = "Incremental"
