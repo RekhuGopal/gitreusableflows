@@ -1,8 +1,6 @@
 # Variable 'region'
 variable "regions" {
-  type        = "list"
   default     = ["East US"]
-  description = "Regions to deploy your resources, can be one or more. Defaults to East US and West US."
 }
 
 # Variable  'locals'
