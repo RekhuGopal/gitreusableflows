@@ -63,7 +63,7 @@ resource "azurerm_template_deployment" "failovergroup" {
   parameters = {
       "sqlServerPrimaryName"  = "${azurerm_sql_server.main.*.name[0]}"
       "sqlDatabaseName"       = "${azurerm_sql_database.main.name}"
-      "sqlFailoverGroupName"  = "myfailover"
+      "sqlFailoverGroupName"  = "myfailoverquickpocs"
       "partnerServers"        = "${join(",", slice(azurerm_sql_server.main.*.name, 1, length(var.regions)))}"
       "partnerResourceGroups" = "${join(",", slice(azurerm_resource_group.main.*.name, 1, length(var.regions)))}"
   }
