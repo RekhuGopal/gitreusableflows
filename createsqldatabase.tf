@@ -1,4 +1,4 @@
-# Variable 'region'
+# Variable region
 variable "regions" {
   default     = ["East US", "West US"]
 }
