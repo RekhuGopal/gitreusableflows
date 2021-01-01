@@ -1,6 +1,6 @@
 # Variable 'region'
 variable "regions" {
-  default     = ["East US"]
+  default     = ["East US", "West US"]
 }
 
 # Variable  'locals'
