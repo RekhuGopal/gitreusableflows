@@ -56,7 +56,7 @@ resource "azurerm_sql_database" "main" {
   tags                             = "${local.tags}"
 }
 
-# Azure Resource Group deployment -  SQL server failover group
+# Azure Resource Group deployment SQL server failover group
 resource "azurerm_template_deployment" "failovergroup" {
   name                = "failover"
   resource_group_name = "${azurerm_resource_group.main.*.name[0]}"
