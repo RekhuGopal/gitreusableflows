@@ -15,7 +15,7 @@ locals {
 # Creates RG dynamically
 resource "azurerm_resource_group" "main" {
   count    = "${length(var.regions)}"
-  name     = "MyDB-RG-${count.index}"
+  name     = "MySQLDB-RG-${count.index}"
   location = "${element(var.regions, count.index)}"
   tags     = "${local.tags}"
 }
@@ -27,15 +27,15 @@ resource "azurerm_sql_server" "main" {
   resource_group_name          = "${element(azurerm_resource_group.main.*.name, count.index)}"
   location                     = "${element(azurerm_resource_group.main.*.location, count.index)}"
   version                      = "12.0"
-  administrator_login          = "4dm1n157r470r"
-  administrator_login_password = "4-v3ry-53cr37-p455w0rd"
+  administrator_login          = "ABC1234"
+  administrator_login_password = "ADdddd@334djhdfjdhf"
   tags                         = "${local.tags}"
 }
 
 # Creates SQL Server firewall
 resource "azurerm_sql_firewall_rule" "main" {
   count               = "${length(var.regions)}"
-  name                = "AllowAzureServices"
+  name                = "AllowAzureServices555"
   resource_group_name = "${element(azurerm_resource_group.main.*.name, count.index)}"
   server_name         = "${element(azurerm_sql_server.main.*.name, count.index)}"
   start_ip_address    = "0.0.0.0"
@@ -44,7 +44,7 @@ resource "azurerm_sql_firewall_rule" "main" {
 
 # Creates SQL DB
 resource "azurerm_sql_database" "main" {
-  name                             = "mysqldatabase"
+  name                             = "mysqldatabase5555"
   resource_group_name              = "${azurerm_resource_group.main.*.name[0]}"
   location                         = "${azurerm_resource_group.main.*.location[0]}"
   server_name                      = "${azurerm_sql_server.main.*.name[0]}"
@@ -63,8 +63,10 @@ resource "azurerm_template_deployment" "failovergroup" {
   parameters = {
       "sqlServerPrimaryName"  = "${azurerm_sql_server.main.*.name[0]}"
       "sqlDatabaseName"       = "${azurerm_sql_database.main.name}"
-      "sqlFailoverGroupName"  = "myfailoverquickpocs001"
+      "sqlFailoverGroupName"  = "myfailoverquickpocs5555"
       "partnerServers"        = "${join(",", slice(azurerm_sql_server.main.*.name, 1, length(var.regions)))}"
       "partnerResourceGroups" = "${join(",", slice(azurerm_resource_group.main.*.name, 1, length(var.regions)))}"
   }
 }
+
+##
