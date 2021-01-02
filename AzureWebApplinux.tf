@@ -1,6 +1,6 @@
 # Create a Resource Group
 resource "azurerm_resource_group" "appservice-rg" {
-  name     = var.rg_name
+  name     = "${var.appname}-RG001"
   location = var.location
 
   tags = {
@@ -12,7 +12,7 @@ resource "azurerm_resource_group" "appservice-rg" {
 
 # Create the App Service Plan
 resource "azurerm_app_service_plan" "service-plan" {
-  name                = "CloudQuickPoCs-${var.region}-${var.environment}-${var.app_name}-service-plan"
+  name                = "CloudQuickPoCs-${var.region}-${var.environment}-${var.appname}-service-plan"
   location            = azurerm_resource_group.appservice-rg.location
   resource_group_name = azurerm_resource_group.appservice-rg.name
   kind                = "Linux"
@@ -32,7 +32,7 @@ resource "azurerm_app_service_plan" "service-plan" {
 
 # Create the App Service
 resource "azurerm_app_service" "app-service" {
-  name                = "CloudQuickPoCs-${var.region}-${var.environment}-${var.app_name}-app-service"
+  name                = "CloudQuickPoCs-${var.region}-${var.environment}-${var.appname}-app-service"
   location            = azurerm_resource_group.appservice-rg.location
   resource_group_name = azurerm_resource_group.appservice-rg.name
   app_service_plan_id = azurerm_app_service_plan.service-plan.id

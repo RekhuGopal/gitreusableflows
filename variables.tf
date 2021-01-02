@@ -4,7 +4,7 @@ variable "company" {
 }
 
 # application name 
-variable "app_name" {
+variable "appname" {
   type        = string
   description = "This variable defines the application name used to build resources"
 }
