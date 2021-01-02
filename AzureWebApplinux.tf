@@ -1,18 +1,17 @@
 # Create a Resource Group
 resource "azurerm_resource_group" "appservice-rg" {
-  name     = "${var.appname}-RG001"
-  location = var.location
-
+  name     = "CloudQuickPoCs-RG001"
+  location = "West US"
   tags = {
-    description = var.description
-    environment = var.environment
-    owner       = var.owner  
+    description = "POCs Demo"
+    environment = "POC"
+    owner       = "CloudQuickPoCs"  
   }
 }
 
 # Create the App Service Plan
 resource "azurerm_app_service_plan" "service-plan" {
-  name                = "CloudQuickPoCs-${var.region}-${var.environment}-${var.appname}-service-plan"
+  name                = "CloudQuickPoCs-Linux-service-plan-001"
   location            = azurerm_resource_group.appservice-rg.location
   resource_group_name = azurerm_resource_group.appservice-rg.name
   kind                = "Linux"
@@ -24,15 +23,15 @@ resource "azurerm_app_service_plan" "service-plan" {
   }
 
   tags = {
-    description = var.description
-    environment = var.environment
-    owner       = var.owner  
+    description = "POCs Demo"
+    environment = "POC"
+    owner       = "CloudQuickPoCs"  
   }
 }
 
 # Create the App Service
 resource "azurerm_app_service" "app-service" {
-  name                = "CloudQuickPoCs-${var.region}-${var.environment}-${var.appname}-app-service"
+  name                = "CloudQuickPoCs-Web-app-service-001"
   location            = azurerm_resource_group.appservice-rg.location
   resource_group_name = azurerm_resource_group.appservice-rg.name
   app_service_plan_id = azurerm_app_service_plan.service-plan.id
@@ -42,8 +41,8 @@ resource "azurerm_app_service" "app-service" {
   }
 
   tags = {
-    description = var.description
-    environment = var.environment
-    owner       = var.owner  
+    description = "POCs Demo"
+    environment = "POC"
+    owner       = "CloudQuickPoCs"  
   }
 }
