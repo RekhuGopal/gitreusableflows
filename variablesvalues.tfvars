@@ -1,5 +1,5 @@
 ############################################################
-# variable store file
+## variable store file
 ############################################################
 location    = "northeurope"
 company     = "quickcloudpocs"
