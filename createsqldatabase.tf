@@ -68,3 +68,5 @@ resource "azurerm_template_deployment" "failovergroup" {
       "partnerResourceGroups" = "${join(",", slice(azurerm_resource_group.main.*.name, 1, length(var.regions)))}"
   }
 }
+
+##
