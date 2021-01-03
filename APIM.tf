@@ -21,7 +21,7 @@ resource "azurerm_api_management_api" "CloudQuickPOCAPIMAPI" {
   resource_group_name = azurerm_resource_group.CloudQuickPOCAPIMRG.name
   api_management_name = azurerm_api_management.CloudQuickPOCAPIM.name
   revision            = "1"
-  display_name        = "Example API"
+  display_name        = "My Test API"
   path                = ""
   protocols           = ["https"]
 
