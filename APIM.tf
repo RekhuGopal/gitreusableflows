@@ -22,7 +22,7 @@ resource "azurerm_api_management_api" "CloudQuickPOCAPIMAPI" {
   api_management_name = azurerm_api_management.CloudQuickPOCAPIM.name
   revision            = "1"
   display_name        = "Example API"
-  path                = "example"
+  path                = ""
   protocols           = ["https"]
 
   import {
