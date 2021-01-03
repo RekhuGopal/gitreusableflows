@@ -26,7 +26,7 @@ resource "azurerm_api_management_api" "CloudQuickPOCAPIMAPI" {
   protocols           = ["https"]
 
   import {
-    content_format = "swagger-json"
-    content_value  = file("APIJson/conference-api.json")
+    content_format = "swagger-link-json"
+    content_value  = "http://conferenceapi.azurewebsites.net/?format=json"
   }
 }
