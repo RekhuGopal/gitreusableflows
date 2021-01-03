@@ -21,9 +21,10 @@ resource "azurerm_api_management_api" "CloudQuickPOCAPIMAPI" {
   resource_group_name = azurerm_resource_group.CloudQuickPOCAPIMRG.name
   api_management_name = azurerm_api_management.CloudQuickPOCAPIM.name
   revision            = "1"
-  display_name        = "My Test API"
+  display_name        = "MyFirstAPI"
   path                = ""
-  protocols           = ["https"]
+  protocols           = ["https", "http"]
+  service_url         = "http://conferenceapi.azurewebsites.net"
 
   import {
     content_format = "swagger-link-json"
