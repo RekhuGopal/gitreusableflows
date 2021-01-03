@@ -62,13 +62,10 @@ resource "azurerm_function_app" "funcdeploy" {
       "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.funcdeploy.instrumentation_key}"
       "APPLICATIONINSIGHTS_CONNECTION_STRING" = "InstrumentationKey=${azurerm_application_insights.funcdeploy.instrumentation_key};IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/"
   }
-
   site_config {
         linux_fx_version= "Python|3.8"        
         ftps_state = "Disabled"
     }
-
-  Enable if you need Managed Identity
   identity {
     type = "SystemAssigned"
   }
