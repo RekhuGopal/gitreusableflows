@@ -13,7 +13,7 @@ resource "azurerm_logic_app_workflow" "cloudquickpocslogicapp" {
 
 ## A custom action in logic app
 resource "azurerm_logic_app_action_custom" "cloudquickpocslogicappcustomaction" {
-  name         = "cloudquickpoclogicapp1-action-1"
+  name         = "cloudquickpoclogicapp1-Custom-action-1"
   logic_app_id = azurerm_logic_app_workflow.cloudquickpocslogicapp.id
 
   body = <<BODY
