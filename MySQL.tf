@@ -34,6 +34,7 @@ resource "azurerm_mysql_database" "mysql" {
   charset             = "utf8"
   collation           = "utf8_unicode_ci"
 }
+
 # my sql firewall
 resource "azurerm_mysql_firewall_rule" "mysql" {
   name                = "cloudquickpocmysql-fwrules"
