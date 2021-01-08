@@ -17,7 +17,7 @@ resource "azurerm_application_insights" "AML" {
 
 # Create Azure Key Vault
 resource "azurerm_key_vault" "AML" {
-  name                = "cloudquickpocsamlkeyvault001"
+  name                = "cloudquickpockv001"
   location            = azurerm_resource_group.AML.location
   resource_group_name = azurerm_resource_group.AML.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
@@ -26,7 +26,7 @@ resource "azurerm_key_vault" "AML" {
 
 # Create Azure Storage Account
 resource "azurerm_storage_account" "AML" {
-  name                     = "cloudquickpocsstorageaccount001"
+  name                     = "cloudquickpocsstga001"
   location                 = azurerm_resource_group.AML.location
   resource_group_name      = azurerm_resource_group.AML.name
   account_tier             = "Standard"
