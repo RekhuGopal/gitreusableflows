@@ -43,3 +43,5 @@ resource "azurerm_mysql_firewall_rule" "mysql" {
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
 }
+
+# demo
