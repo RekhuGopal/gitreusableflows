@@ -94,3 +94,5 @@ resource "azurerm_iothub" "IOTHUB" {
     purpose = "testing"
   }
 }
+
+#demo
