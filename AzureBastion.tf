@@ -41,3 +41,5 @@ resource "azurerm_bastion_host" "ABS" {
     public_ip_address_id = azurerm_public_ip.ABS.id
   }
 }
+
+#demo
