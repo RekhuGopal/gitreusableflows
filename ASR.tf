@@ -47,3 +47,5 @@ resource "azurerm_backup_policy_vm" "ASR" {
     months   = ["January"]
   }
 }
+
+#demo
