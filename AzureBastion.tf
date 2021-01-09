@@ -14,7 +14,7 @@ resource "azurerm_virtual_network" "ABS" {
 
 # Create Azure subnet
 resource "azurerm_subnet" "ABS" {
-  name                 = "bastiondemovnetsubnet"
+  name                 = "AzureBastionSubnet"
   resource_group_name  = azurerm_resource_group.ABS.name
   virtual_network_name = azurerm_virtual_network.ABS.name
   address_prefixes     = ["192.168.1.224/27"]
