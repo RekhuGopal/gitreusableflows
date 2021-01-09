@@ -46,3 +46,5 @@ resource "azurerm_machine_learning_workspace" "AML" {
     type = "SystemAssigned"
   }
 }
+
+# Demo
