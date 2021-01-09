@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "AML" {
 
 # Create App Insight
 resource "azurerm_application_insights" "AML" {
-  name                = "AML-ai"
+  name                = "aml-cloudquickpocsappinsight"
   location            = azurerm_resource_group.AML.location
   resource_group_name = azurerm_resource_group.AML.name
   application_type    = "web"
@@ -17,7 +17,7 @@ resource "azurerm_application_insights" "AML" {
 
 # Create Azure Key Vault
 resource "azurerm_key_vault" "AML" {
-  name                = "AMLkeyvault"
+  name                = "cloudquickpockv001"
   location            = azurerm_resource_group.AML.location
   resource_group_name = azurerm_resource_group.AML.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
@@ -26,7 +26,7 @@ resource "azurerm_key_vault" "AML" {
 
 # Create Azure Storage Account
 resource "azurerm_storage_account" "AML" {
-  name                     = "workspacestorageaccount"
+  name                     = "cloudquickpocsstga001"
   location                 = azurerm_resource_group.AML.location
   resource_group_name      = azurerm_resource_group.AML.name
   account_tier             = "Standard"
@@ -35,7 +35,7 @@ resource "azurerm_storage_account" "AML" {
 
 # Create Azure ML Service
 resource "azurerm_machine_learning_workspace" "AML" {
-  name                    = "example-workspace"
+  name                    = "cloudquickpocs-aml-workspace"
   location                = azurerm_resource_group.AML.location
   resource_group_name     = azurerm_resource_group.AML.name
   application_insights_id = azurerm_application_insights.AML.id
@@ -46,3 +46,5 @@ resource "azurerm_machine_learning_workspace" "AML" {
     type = "SystemAssigned"
   }
 }
+
+# Demo
