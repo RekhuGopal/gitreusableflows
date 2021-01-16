@@ -1,4 +1,4 @@
-name: "Terraform"
+name: "Terraform-Apply-Infra-Release"
 
 on:
   push:
@@ -18,10 +18,6 @@ jobs:
         with:
           # terraform_version: 0.13.0:
           cli_config_credentials_token: ${{ secrets.AWS_TFAPI_TOKEN }}
-
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
 
       - name: Terraform Init
         id: init
