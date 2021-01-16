@@ -1,19 +1,11 @@
 terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-    random = {
-      source = "hashicorp/random"
-    }
-  }
+  # Terraform version at the time of writing this post
+  required_version = ">= 0.12.24"
 
-  backend "remote" {
-    organization = "CloudQuickPOCs"
-
-    workspaces {
-      name = "AWS-CloudQuickPOCs"
-    }
+  backend "s3" {
+    bucket = "cloudquickpocsbackendtf"
+    key    = "s3://cloudquickpocsbackendtf/tfbackentstatefiles/"
+    region = "us-east-1"
   }
 }
 
