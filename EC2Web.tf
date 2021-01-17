@@ -1,18 +1,3 @@
-terraform {
-  # Terraform version at the time of writing this post
-  required_version = ">= 0.12.24"
-
-  backend "s3" {
-    bucket = "cloudquickpocsbackendtf"
-    key    = "s3://cloudquickpocsbackendtf/tfbackentstatefiles/"
-    region = "us-east-1"
-  }
-}
-
-provider "aws" {
-  region = "us-east-1"
-}
-
 provider "random" {}
 
 resource "random_pet" "sg" {}
