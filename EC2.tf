@@ -6,7 +6,7 @@ resource "aws_vpc" "awsec2demo" {
   cidr_block = "172.16.0.0/16"
 
   tags = {
-    Name = "quickcloudpocs"
+    Name = "vpc-quickcloudpocs"
   }
 }
 
@@ -16,7 +16,7 @@ resource "aws_subnet" "awsec2demo" {
   cidr_block        = "172.16.10.0/24"
   
   tags = {
-    Name = "quickcloudpocs"
+    Name = "subnet-quickcloudpocs"
   }
 }
 
@@ -26,7 +26,7 @@ resource "aws_network_interface" "awsec2demo" {
   private_ips = ["172.16.10.100"]
 
   tags = {
-    Name = "quickcloudpocs"
+    Name = "NI-quickcloudpocs"
   }
 }
 
