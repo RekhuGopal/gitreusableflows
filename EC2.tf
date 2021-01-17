@@ -33,6 +33,7 @@ resource "aws_network_interface" "awsec2demo" {
 ## AWS Security Group
 resource "aws_security_group" "awsec2demo" {
   name = "${random_pet.sg.id}-sg"
+  vpc_id      = aws_vpc.awsec2demo.id
   ingress {
     from_port   = 8080
     to_port     = 8080
