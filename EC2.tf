@@ -46,12 +46,9 @@ resource "aws_security_group" "awsec2demo" {
 resource "aws_instance" "awsec2demo" {
   ami           = "ami-0be2609ba883822ec" # us-east-1
   instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.awsec2demo.id]
 
   network_interface {
     network_interface_id = aws_network_interface.awsec2demo.id
     device_index         = 0
   }
 }
-
-#
