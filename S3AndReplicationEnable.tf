@@ -16,16 +16,15 @@ resource "aws_iam_role" "replication" {
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "s3.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Principal":{
+            "Service":"s3.amazonaws.com"
+         },
+         "Action":"sts:AssumeRole"
+      }
+   ]
 }
 POLICY
 }
@@ -40,8 +39,8 @@ resource "aws_iam_policy" "replication" {
   "Statement": [
     {
       "Action": [
-        "s3:GetReplicationConfiguration",
-        "s3:ListBucket"
+            "s3:ListBucket",
+            "s3:GetReplicationConfiguration"
       ],
       "Effect": "Allow",
       "Resource": [
@@ -50,8 +49,8 @@ resource "aws_iam_policy" "replication" {
     },
     {
       "Action": [
-        "s3:GetObjectVersion",
-        "s3:GetObjectVersionAcl"
+            "s3:GetObjectVersionForReplication",
+            "s3:GetObjectVersionAcl"
       ],
       "Effect": "Allow",
       "Resource": [
@@ -60,8 +59,10 @@ resource "aws_iam_policy" "replication" {
     },
     {
       "Action": [
-        "s3:ReplicateObject",
-        "s3:ReplicateDelete"
+            "s3:ReplicateObject",
+            "s3:ReplicateDelete",
+            "s3:ReplicateTags",
+            "s3:GetObjectVersionTagging"
       ],
       "Effect": "Allow",
       "Resource": "${aws_s3_bucket.destination.arn}/*"
