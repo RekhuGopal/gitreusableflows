@@ -21,7 +21,7 @@ resource "aws_vpc" "useastvpccqpoc" {
 ## Create VPC-2
 resource "aws_vpc" "uswestvpccqpoc" {
   provider   =  aws.central
-  cidr_block = "10.2.0.0/16"
+  cidr_block = "172.16.0.0/16"
   tags = {
     Name = "VPC-2"
   }
