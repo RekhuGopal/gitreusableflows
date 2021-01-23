@@ -6,7 +6,7 @@ resource "aws_vpc_peering_connection" "vpcpeerigdemo" {
   peer_region   = "us-east-1"
   
   tags = {
-    Name = "VPC-1-to-VPC-2"
+    Name = "VPC1-to-VPC2"
   }
 }
 
@@ -26,5 +26,3 @@ resource "aws_vpc" "uswestvpccqpoc" {
     Name = "VPC-2"
   }
 }
-
-#Demo
