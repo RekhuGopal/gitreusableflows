@@ -1,5 +1,6 @@
 ## Create Peering between VPC-1 and VPC-2
 resource "aws_vpc_peering_connection" "vpcpeerigdemo" {
+  peer_owner_id = "357171621133"
   peer_vpc_id   = aws_vpc.uswestvpccqpoc.id
   vpc_id        = aws_vpc.useastvpccqpoc.id
   auto_accept   = true
@@ -20,7 +21,7 @@ resource "aws_vpc" "useastvpccqpoc" {
 ## Create VPC-2
 resource "aws_vpc" "uswestvpccqpoc" {
   provider   =  aws.central
-  cidr_block = "172.16.0.0/16"
+  cidr_block = "10.2.0.0/16"
   tags = {
     Name = "VPC-2"
   }
