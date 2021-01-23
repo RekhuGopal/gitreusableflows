@@ -3,8 +3,7 @@ resource "aws_vpc_peering_connection" "vpcpeerigdemo" {
   peer_vpc_id   = aws_vpc.uswestvpccqpoc.id
   vpc_id        = aws_vpc.useastvpccqpoc.id
   auto_accept   = true
-  peer_region   = "us-east-1"
-
+  
   tags = {
     Name = "VPC-1-to-VPC-2"
   }
