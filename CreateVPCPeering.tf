@@ -26,3 +26,5 @@ resource "aws_vpc" "uswestvpccqpoc" {
     Name = "VPC-2"
   }
 }
+
+#Demo
