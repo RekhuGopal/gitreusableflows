@@ -1,14 +1,3 @@
-## Provider us-east-1
-provider "aws" {
-  region = "us-east-1"
-}
-
-## Provider us-west-1
-provider "aws" {
-  alias  = "central"
-  region = "us-west-1"
-}
-
 ## Create Peering between VPC-1 and VPC-2
 resource "aws_vpc_peering_connection" "vpcpeerigdemo" {
   peer_vpc_id   = aws_vpc.uswestvpccqpoc.id
@@ -23,7 +12,6 @@ resource "aws_vpc_peering_connection" "vpcpeerigdemo" {
 
 ## Create VPC-1
 resource "aws_vpc" "useastvpccqpoc" {
-  provider   =  aws.us-east-1
   cidr_block = "10.1.0.0/16"
   tags = {
     Name = "VPC-1"
