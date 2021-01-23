@@ -11,13 +11,3 @@ terraform {
 
 provider "random" {}
 
-## Provider us-east-1
-provider "aws" {
-  region = "us-east-1"
-}
-
-## Provider us-west-1
-provider "aws" {
-  region = "us-west-2"
-}
-
