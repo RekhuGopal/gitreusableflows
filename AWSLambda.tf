@@ -19,20 +19,20 @@ resource "aws_s3_bucket" "cqpocsbucket" {
 resource "aws_s3_bucket_object" "object" {
   bucket = aws_s3_bucket.cqpocsbucket.id
   key    = "hello.zip"
-  source = "${file("${path.module}/hello.zip")}"
+  source = "${path.module}/hello.zip"
 }
 
 ## IAM role for lambda
 resource "aws_iam_role" "lambda_role" {
   name               = "lambda_role"
-  assume_role_policy = "${file("${path.module}/Project/lambda_assume_role_policy.json")}"
+  assume_role_policy = "${path.module}/Project/lambda_assume_role_policy.json"
 }
 
 ## IAM role-policy for lambda
 resource "aws_iam_role_policy" "lambda_policy" {
   name   = "lambda_policy"
   role   = aws_iam_role.lambda_role.id
-  policy = "${file("${path.module}/Project/lambda_policy.json")}"
+  policy = "${path.module}/Project/lambda_policy.json"
 }
 
 
