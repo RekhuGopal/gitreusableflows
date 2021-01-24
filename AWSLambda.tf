@@ -45,3 +45,5 @@ resource "aws_lambda_function" "test_lambda" {
   handler       = "hello.handler"
   runtime       = "nodejs12.x"
 }
+
+#demo
