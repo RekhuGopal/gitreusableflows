@@ -1,5 +1,3 @@
-
-
 ## Create VPC-1
 resource "aws_vpc" "useastvpccqpoc" {
   cidr_block = "10.1.0.0/16"
@@ -26,7 +24,7 @@ resource "aws_vpc_peering_connection" "vpcpeerigdemo" {
   auto_accept   = false
 
   tags = {
-    Name = "VPC1-to-VPC2"
+    Name = "VPC1cqpocs-to-VPC2cqpocs"
   }
 }
 
