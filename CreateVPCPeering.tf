@@ -22,7 +22,7 @@ resource "aws_vpc_peering_connection" "vpcpeerigdemo" {
   peer_owner_id = "357171621133"
   peer_vpc_id   = aws_vpc.uswestvpccqpoc.id
   vpc_id        = aws_vpc.useastvpccqpoc.id
-  peer_region   = "us-east-1"
+  peer_region   = "us-west-1"
   auto_accept   = false
 
   tags = {
