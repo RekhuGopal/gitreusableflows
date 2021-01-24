@@ -25,7 +25,7 @@ resource "aws_s3_bucket_object" "object" {
 ## IAM role for lambda
 resource "aws_iam_role" "lambda_role" {
   name               = "lambda_role"
-  assume_role_policy = file(Project/lambda_assume_role_policy.json")
+  assume_role_policy = file("Project/lambda_assume_role_policy.json")
 }
 
 ## IAM role-policy for lambda
