@@ -45,3 +45,8 @@ resource "aws_lambda_function" "test_lambda" {
   handler       = "Example.handler"	
   runtime       = "python3.8"	
 }
+
+## output to be consumed by other module
+output "pythonLambdaArn" {
+  value = aws_lambda_function.test_lambda.arn
+}
