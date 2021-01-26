@@ -1,7 +1,7 @@
 ##Zip the function to be run at function App.	
 data "archive_file" "init" {	
   type        = "zip"	
-  source_file = file("./Example.py")	
+  source_file = file("Example.py")	
   output_path = "${path.module}/Example.zip"	
 }	
 
