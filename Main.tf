@@ -22,13 +22,3 @@ provider "aws" {
   region = "us-west-1"
 }
 
-## Create AWS Python lambda function
-module "awslambdafunction" {
-  source = "./LambdaFunction"
-}
-
-## Create AWS Stepfunction to Invoke AWS Lambda Function
-module "awsstepfunction" {
-  source         = "./StepFunction"
-  pythonfunctionapparn = module.awslambdafunction.pythonLambdaArn
-}
