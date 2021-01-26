@@ -29,5 +29,6 @@ module "awslambdafunction" {
 
 ## Create AWS Stepfunction to Invoke AWS Lambda Function
 module "awsstepfunction" {
-  source = "./StepFunction"
+  source         = "./StepFunction"
+  pythonfunctionapparn = "${module.awslambdafunction.aws_lambda_function.test_lambda.arn}"
 }

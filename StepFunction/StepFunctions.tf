@@ -1,6 +1,5 @@
 ## Get the lambda function been create.
-data "aws_lambda_function" "existing" {
-  function_name = "Example"
+variable "pythonfunctionapparn" {
 }
 
 ## AWS Step function role
@@ -37,7 +36,7 @@ resource "aws_iam_role_policy" "step_function_policy" {
           "lambda:InvokeFunction"
         ],
         "Effect": "Allow",
-        "Resource": "${data.aws_lambda_function.existing.arn}"
+        "Resource": "${var.pythonfunctionapparn}"
       }
     ]
   }
@@ -56,7 +55,7 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
     "States": {
       "ExampleLambdaFunctionApp": {
         "Type": "Task",
-        "Resource": "${data.aws_lambda_function.existing.arn}",
+        "Resource": "${var.pythonfunctionapparn}",
         "End": true
       }
     }
