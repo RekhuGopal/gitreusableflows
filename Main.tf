@@ -32,5 +32,3 @@ module "awsstepfunction" {
   source         = "./StepFunction"
   pythonfunctionapparn = module.awslambdafunction.pythonLambdaArn
 }
-
-## testcomment
