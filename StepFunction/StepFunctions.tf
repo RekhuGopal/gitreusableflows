@@ -36,7 +36,7 @@ resource "aws_iam_role_policy" "step_function_policy" {
           "lambda:InvokeFunction"
         ],
         "Effect": "Allow",
-        "Resource": var.pythonfunctionapparn
+        "Resource": "${var.pythonfunctionapparn}"
       }
     ]
   }
@@ -55,7 +55,7 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
     "States": {
       "ExampleLambdaFunctionApp": {
         "Type": "Task",
-        "Resource": var.pythonfunctionapparn,
+        "Resource": "${var.pythonfunctionapparn}",
         "End": true
       }
     }
