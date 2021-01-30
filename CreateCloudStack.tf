@@ -1,8 +1,8 @@
-resource "aws_cloudformation_stack" "network" {
-  name = "networking-stack"
+resource "aws_cloudformation_stack" "s3staticwebsite" {
+  name = "s3staticwebsite-stack"
 
   parameters = {
-    BucketName = "quickcloudpoccloudformationdemobucket"
+    BucketName = "quickcloudpoccloudformationdemobucket1"
   }
 
   template_body = file("CloudFormationTemplates/S3.yaml")
