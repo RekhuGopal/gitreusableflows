@@ -5,5 +5,5 @@ resource "aws_cloudformation_stack" "network" {
     BucketName = "QuickCloudPOCCloudFormationDemoBucket"
   }
 
-  template_body = file("CloudFormationTemplates/s3.yaml")
+  template_body = file("CloudFormationTemplates/S3.yaml")
 }
