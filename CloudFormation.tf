@@ -29,5 +29,3 @@ resource "aws_cloudformation_stack" "cqpocsnetwork" {
 }
 STACK
 }
-
-#Demo
