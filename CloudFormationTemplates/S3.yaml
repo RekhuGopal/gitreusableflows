@@ -31,20 +31,6 @@ Resources:
                 - !Ref S3Bucket
                 - /*
       Bucket: !Ref S3Bucket
-  S3Object:
-    Type: AWS::S3::Object
-    Properties:
-      Target:
-        Bucket: !Ref BucketName
-        Key: index.html
-        ContentType: text/html
-      Body: !Sub |
-        <!DOCTYPE html>
-        <html>
-        <body>
-        <h1>Hello There - This CloudQuickPOCsDemo..!</h1>
-        </body>
-        </html>
 Outputs:
   WebsiteURL:
     Value: !GetAtt 
