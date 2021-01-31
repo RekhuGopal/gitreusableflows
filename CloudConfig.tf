@@ -51,7 +51,7 @@ resource "aws_config_delivery_channel" "cqpoc-config" {
   name           = "config-cqpoc"
   s3_bucket_name = aws_s3_bucket.cqpoc-config.bucket
 
-  depends_on = ["aws_config_configuration_recorder.cqpoc-config"]
+  depends_on = [aws_config_configuration_recorder.cqpoc-config]
 }
 
 ## AWS Config recording status
@@ -59,7 +59,7 @@ resource "aws_config_configuration_recorder_status" "config" {
   name       = aws_config_configuration_recorder.cqpoc-config.name
   is_enabled = true
 
-  depends_on = ["aws_config_delivery_channel.cqpoc-config"]
+  depends_on = [aws_config_delivery_channel.cqpoc-config]
 }
 
 ## AWS Config rule for S3 bucket version check
@@ -71,5 +71,5 @@ resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
     source_identifier = "S3_BUCKET_VERSIONING_ENABLED"
   }
 
-  depends_on = ["aws_config_configuration_recorder.cqpoc-config"]
+  depends_on = [aws_config_configuration_recorder.cqpoc-config]
 }
