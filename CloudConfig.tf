@@ -49,7 +49,7 @@ resource "aws_config_configuration_recorder" "cqpoc-config" {
 ## AWS Config deivery channel
 resource "aws_config_delivery_channel" "cqpoc-config" {
   name           = "config-cqpoc"
-  s3_bucket_name = aws_s3_bucket.cqpoc-config.bucket
+  s3_bucket_name = aws_s3_bucket.cqpocs-config.bucket
 
   depends_on = [aws_config_configuration_recorder.cqpoc-config]
 }
