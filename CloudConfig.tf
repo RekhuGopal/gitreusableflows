@@ -1,3 +1,13 @@
+## AWS S3 bucket
+resource "aws_s3_bucket" "cqpocs-config" {
+  bucket = "config-bucket-cqpocs"
+  acl    = "private"
+
+  versioning {
+    enabled = true
+  }
+}
+
 ## IAM role
 resource "aws_iam_role" "cqpoc-config" {
   name = "config-cqpoc"
@@ -25,14 +35,28 @@ resource "aws_iam_role_policy_attachment" "my-config" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRole"
 }
 
-## AWS S3 bucket
-resource "aws_s3_bucket" "cqpocs-config" {
-  bucket = "config-bucket-cqpocs"
-  acl    = "private"
+## Adding policy for delivery channel
+resource "aws_iam_role_policy" "p" {
+  name = "awsconfig-cqpocs"
+  role = aws_iam_role.cqpoc-config.name
 
-  versioning {
-    enabled = true
-  }
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:*"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "${aws_s3_bucket.cqpocs-config.arn}",
+        "${aws_s3_bucket.cqpocs-config.arn}/*"
+      ]
+    }
+  ]
+}
+POLICY
 }
 
 ## AWS Config recorder
@@ -76,8 +100,8 @@ resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
 
 ## Business S3 
 ## AWS S3 bucket
-resource "aws_s3_bucket" "business" {
-  bucket = "business-bucket"
+resource "aws_s3_bucket" "business-001" {
+  bucket = "business-bucket-cqpocs001"
   acl    = "private"
 
   versioning {
