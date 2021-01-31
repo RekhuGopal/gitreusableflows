@@ -73,3 +73,14 @@ resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
 
   depends_on = [aws_config_configuration_recorder.cqpoc-config]
 }
+
+## Business S3 
+## AWS S3 bucket
+resource "aws_s3_bucket" "business" {
+  bucket = "business-bucket"
+  acl    = "private"
+
+  versioning {
+    enabled = false
+  }
+}
