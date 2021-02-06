@@ -95,3 +95,14 @@ resource "aws_iam_role_policy" "lambda_role_logs_policy" {
 }
 EOF
 }
+
+## Data of SQS
+data "aws_sqs_queue" "cqpocs_queue" {
+    name = "cqpocs-updates-queue"
+}
+
+## Event Source mapping
+resource "aws_lambda_event_source_mapping" "example" {
+  event_source_arn = data.aws_sqs_queue.cqpocs_queue.arn
+  function_name    = aws_lambda_function.results_updates_lambda.arn
+}
