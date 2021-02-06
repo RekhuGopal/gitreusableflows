@@ -50,3 +50,5 @@ resource "aws_sqs_queue_policy" "cqpocs_updates_queue_policy" {
 }
 POLICY
 }
+
+## demo
