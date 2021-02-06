@@ -1,6 +1,6 @@
 ## AWS Lambda function
 resource "aws_lambda_function" "results_updates_lambda" {
-    filename         = "${path.module}/Lambda/example.zip"
+    filename         = "Lambda/example.zip"
     function_name    = "hello_world_example"
     role             = aws_iam_role.lambda_role.arn
     handler          = "example.handler"
