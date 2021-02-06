@@ -2,9 +2,8 @@
 resource "aws_lambda_function" "results_updates_lambda" {
     filename         = "${path.module}/Lambda/example.zip"
     function_name    = "hello_world_example"
-    role             = "${aws_iam_role.lambda_role.arn}"
+    role             = aws_iam_role.lambda_role.arn
     handler          = "example.handler"
-    source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
     runtime          = "nodejs12.x"
 }
 
