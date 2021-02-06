@@ -1,7 +1,32 @@
+##Zip the function to be run at function App.
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_file = "${path.module}/Lambda/example.js"
+  output_path = "${path.module}/Lambda/example.zip"
+}
+
+## S3 Bucket
+resource "aws_s3_bucket" "cqpocsbucket" {
+  bucket = "quickcloudpocsbucket001"
+  acl    = "private"
+
+  tags = {
+    Name        = "cqpocsbucket-1"
+  }
+}
+
+## Upload zip file to s3 bucket
+resource "aws_s3_bucket_object" "object" {
+  bucket = aws_s3_bucket.cqpocsbucket.id
+  key    = "example.zip"
+  source = "${path.module}/Lambda/example.zip"
+}
+
 ## AWS Lambda function
 resource "aws_lambda_function" "results_updates_lambda" {
-    filename         = "example.zip"
-    function_name    = "hello_world_example"
+    function_name    = "example"
+    s3_bucket        = aws_s3_bucket.cqpocsbucket.id
+    s3_key           = "example.zip"
     role             = aws_iam_role.lambda_role.arn
     handler          = "example.handler"
     runtime          = "nodejs12.x"
