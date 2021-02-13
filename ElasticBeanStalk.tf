@@ -29,6 +29,9 @@ EOF
 ## VPC
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
+   tags = {
+    Name = "MainVPC"
+  }
 }
 
 ## VPC Subnet
@@ -70,7 +73,7 @@ resource "aws_elastic_beanstalk_environment" "environment" {
   setting {
     namespace = "aws:ec2:vpc"
     name      = "VPCId"
-    value     = "${aws_vpc.main.arn}"
+    value     = "${aws_vpc.main.id}"
   }
 
   setting {
