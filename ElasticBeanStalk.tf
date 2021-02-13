@@ -42,13 +42,4 @@ resource "aws_elastic_beanstalk_environment" "environment" {
         name      = "IamInstanceProfile"
         value     =  "${aws_iam_instance_profile.test_profile.arn}"
       }
-  setting {
-    namespace = "aws:autoscaling:launchconfiguration"
-    name = "InstanceType"
-    value = "t2.micro"
-  }
-  tags = {
-    Name = "test"
-    Environment = "test"
-  }
 }
