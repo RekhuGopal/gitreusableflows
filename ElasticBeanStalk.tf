@@ -26,6 +26,20 @@ resource "aws_iam_role" "role" {
 EOF
 }
 
+## VPC
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+
+## VPC Subnet
+resource "aws_subnet" "main" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "Main"
+  }
+}
 
 ## Elastic bean stalk app
 resource "aws_elastic_beanstalk_application" "application" {
@@ -41,5 +55,16 @@ resource "aws_elastic_beanstalk_environment" "environment" {
         namespace = "aws:autoscaling:launchconfiguration"
         name      = "IamInstanceProfile"
         value     =  "${aws_iam_instance_profile.test_profile.arn}"
-      }
+   }
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "VPCId"
+    value     = "${aws_vpc.main.arn}"
+  }
+
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "Subnets"
+    value     = "${aws_subnet.main.arn}"
+  }
 }
