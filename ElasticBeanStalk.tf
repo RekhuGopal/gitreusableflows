@@ -41,6 +41,17 @@ resource "aws_subnet" "main" {
   }
 }
 
+## VPC ELBSubnets
+resource "aws_subnet" "ELBSubnets" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.2.0/27"
+
+  tags = {
+    Name = "ELBSubnets"
+  }
+}
+
+
 ## Elastic bean stalk app
 resource "aws_elastic_beanstalk_application" "application" {
   name        = "my-cqpocs-app"
@@ -66,5 +77,11 @@ resource "aws_elastic_beanstalk_environment" "environment" {
     namespace = "aws:ec2:vpc"
     name      = "Subnets"
     value     = "${aws_subnet.main.arn}"
+  }
+
+    setting {
+    namespace = "aws:ec2:vpc"
+    name = "ELBSubnets"
+    value = "${aws_subnet.ELBSubnets.arn}"
   }
 }
