@@ -13,4 +13,13 @@ resource "aws_elastic_beanstalk_environment" "environment" {
         name      = "IamInstanceProfile"
         value     = "aws-elasticbeanstalk-ec2-role"
       }
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name = "InstanceType"
+    value = "t2.micro"
+  }
+  tags = {
+    Name = "test"
+    Environment = "test"
+  }
 }
