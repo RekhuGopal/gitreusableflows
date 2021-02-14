@@ -3,7 +3,7 @@ resource "aws_organizations_organization" "cqpocs" {}
 
 ## DEV
 resource "aws_organizations_organizational_unit" "dev" {
-  name      = "TEST"
+  name      = "DEV"
   parent_id = "${aws_organizations_organization.test.roots.0.id}"
 }
 
@@ -14,8 +14,8 @@ resource "aws_organizations_organizational_unit" "tst" {
 }
 
 ## PROD
-resource "aws_organizations_organizational_unit" "pord" {
-  name      = "TEST"
+resource "aws_organizations_organizational_unit" "prod" {
+  name      = "PROD"
   parent_id = "${aws_organizations_organization.test.roots.0.id}"
 }
 
