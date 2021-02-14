@@ -18,3 +18,5 @@ resource "aws_organizations_organizational_unit" "prod" {
   name      = "PROD"
   parent_id = data.aws_organizations_organization.cqpocs.roots.0.id
 }
+
+#demo
