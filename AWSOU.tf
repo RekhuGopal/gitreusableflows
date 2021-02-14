@@ -1,22 +1,22 @@
 ## AWS aws_organizations
-resource "aws_organizations_organization" "cqpocs" {}
+data "aws_organizations_organization" "cqpocs" {}
 
 ## DEV
 resource "aws_organizations_organizational_unit" "dev" {
   name      = "DEV"
-  parent_id = aws_organizations_organization.cqpocs.roots.0.id
+  parent_id = data.aws_organizations_organization.cqpocs.roots.0.id
 }
 
 ## TST
 resource "aws_organizations_organizational_unit" "tst" {
   name      = "TEST"
-  parent_id = aws_organizations_organization.cqpocs.roots.0.id
+  parent_id = data.aws_organizations_organization.cqpocs.roots.0.id
 }
 
 ## PROD
 resource "aws_organizations_organizational_unit" "prod" {
   name      = "PROD"
-  parent_id = aws_organizations_organization.cqpocs.roots.0.id
+  parent_id = data.aws_organizations_organization.cqpocs.roots.0.id
 }
 
 ## Move an AWS Account to destination OU
