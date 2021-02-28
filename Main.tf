@@ -9,6 +9,7 @@ terraform {
   }
 }
 
+## random provider
 provider "random" {}
 
 ## Provider us-east-1
