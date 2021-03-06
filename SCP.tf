@@ -4,7 +4,7 @@ data "aws_organizations_organization" "SCPDemoOU" {}
 ## OU Unit
 resource "aws_organizations_organizational_unit" "SCPDemoOU" {
   name      = "SCPDemoOU"
-  parent_id = aws_organizations_organization.SCPDemoOU.roots[0].id
+  parent_id = data.aws_organizations_organization.SCPDemoOU.roots.0.id
 }
 
 ## Attachiing policy
