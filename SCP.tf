@@ -13,7 +13,7 @@ resource "aws_organizations_policy_attachment" "aws_ou_scp" {
 ## Create SCP
 resource "aws_organizations_policy" "aws_ou_scp" {
   name = "aws_ou_scp"
- content = <<EOF
+ content = <<CONTENT
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -32,4 +32,6 @@ resource "aws_organizations_policy" "aws_ou_scp" {
         "Resource": "*"
     }
   ]
+}
+CONTENT
 }
