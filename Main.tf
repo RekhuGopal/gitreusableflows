@@ -5,7 +5,7 @@ terraform {
 
   backend "s3" {
     bucket = "cloudquickpocsbackendtf"
-    key    = "quickcloudpocsbackend.tfstate"
+    key    = "quickcloudpocsbackend_2.tfstate"
     region = "us-east-1"
   }
 }
