@@ -1,3 +1,6 @@
+## Get root data
+data "aws_organizations_organization" "SCPDemoOU" {}
+
 ## OU Unit
 resource "aws_organizations_organizational_unit" "SCPDemoOU" {
   name      = "SCPDemoOU"
