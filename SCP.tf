@@ -7,7 +7,7 @@ resource "aws_organizations_organizational_unit" "SCPDemoOU" {
   parent_id = data.aws_organizations_organization.SCPDemoOU.roots.0.id
 }
 
-## Attachiing policy
+## Attachiing policy to OU
 resource "aws_organizations_policy_attachment" "aws_ou_scp" {
   policy_id = aws_organizations_policy.aws_ou_scp.id
   target_id = aws_organizations_organizational_unit.SCPDemoOU.id
