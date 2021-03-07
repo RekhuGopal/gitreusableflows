@@ -1,4 +1,4 @@
-## backend data
+## backend data for terraform
 terraform {
   # Terraform version at the time of writing this post
   required_version = ">= 0.12.24"
