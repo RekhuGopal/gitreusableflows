@@ -13,7 +13,7 @@ resource "aws_organizations_policy_attachment" "aws_ou_scp" {
   target_id = aws_organizations_organizational_unit.SCPDemoOU.id
 }
 
-## Create SCP
+## Create SCP - to stop other than "t2.micro" instance
 resource "aws_organizations_policy" "aws_ou_scp" {
   name = "aws_ou_scp"
  content = <<CONTENT
@@ -21,18 +21,15 @@ resource "aws_organizations_policy" "aws_ou_scp" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "DenyRootUser",
+      "Sid": "RequireMicroInstanceType",
       "Effect": "Deny",
-      "Action": "*",
-      "Resource": "*",
+      "Action": "ec2:RunInstances",
+      "Resource": "arn:aws:ec2:*:*:instance/*",
       "Condition": {
-        "StringLike": { "aws:PrincipalArn": "arn:aws:iam::*:root" }
+        "StringNotEquals":{               	
+          "ec2:InstanceType":"t2.micro"
+        }
       }
-    },
-    {
-        "Effect": "Deny",
-        "Action": "organizations:LeaveOrganization",
-        "Resource": "*"
     }
   ]
 }
