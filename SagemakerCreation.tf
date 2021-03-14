@@ -1,3 +1,3 @@
 module "webserver_cluster" {
-  source = "../terraform"
+  source = "./terraform"
 }
