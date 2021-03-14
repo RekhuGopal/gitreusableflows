@@ -23,4 +23,3 @@ provider "aws" {
   alias  = "central"
   region = "us-west-1"
 }
-
