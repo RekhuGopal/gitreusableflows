@@ -9,11 +9,11 @@ resource "aws_sagemaker_notebook_instance" "basic" {
     CreatedBy = "CQPOCs"
   }
 
-  depends_on = [aws_s3_bucket_object.s3_fraud_detection_notebook ]
+  depends_on = [aws_s3_bucket_object.s3_bucket_1]
 }
 
 data "template_file" "instance_init" {
-  template = file("${path.module}/template/sagemaker_instance_init.sh")
+  template = file("terraform/template/sagemaker_instance_init.sh")
 
   vars = {
     s3_bucket_name_1     = aws_s3_bucket.s3_bucket_1.id

@@ -16,8 +16,8 @@ resource "aws_s3_bucket" "s3_bucket_1" {
   }
 }
 
-resource "aws_s3_bucket_object" "s3_fraud_detection_notebook" {
-  bucket = aws_s3_bucket.fraud_detection_function_bucket.id
+resource "aws_s3_bucket_object" "s3_bucket_1" {
+  bucket = aws_s3_bucket.s3_bucket_1.id
   key    = "fraud-detection-using-machine-learning/1.0/notebooks/sagemaker_fraud_detection.ipynb"
   source = "source/notebooks/sagemaker_fraud_detection.ipynb"
 }
