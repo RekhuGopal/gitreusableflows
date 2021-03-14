@@ -25,9 +25,4 @@ resource "aws_s3_bucket_object" "s3_fraud_detection_archive" {
   bucket = aws_s3_bucket.fraud_detection_function_bucket.id
   key    = "fraud-detection-using-machine-learning/1.0/fraud_detection.zip"
   source = data.archive_file.fraud_detection_archive.output_path
-
-  # The filemd5() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
-  # etag = "${md5(file("path/to/file"))}"
-  etag = filemd5(data.archive_file.fraud_detection_archive.output_path) # use md5 of index.py to detect changes in the function
 }
