@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "fraud_detection_function_bucket" {
+resource "aws_s3_bucket" "fraud_detection_function_bucketfn" {
   bucket = "fdlambda-bucket"
   acl    = "private"
 
@@ -22,7 +22,7 @@ data "archive_file" "fraud_detection_archive" {
 }
 
 resource "aws_s3_bucket_object" "s3_fraud_detection_archive" {
-  bucket = aws_s3_bucket.fraud_detection_function_bucket.id
+  bucket = aws_s3_bucket.fraud_detection_function_bucketfn.id
   key    = "fraud-detection-using-machine-learning/1.0/fraud_detection.zip"
   source = data.archive_file.fraud_detection_archive.output_path
 
