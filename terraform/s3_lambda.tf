@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "fraud_detection_function_bucket" {
 
 data "archive_file" "fraud_detection_archive" {
   type        = "zip"
-  source_file = file("source/fraud_detection/index.py")
+  source_file = "source/fraud_detection/index.py"
   output_path = "${path.module}/dist/fraud_detection.zip"
 }
 
