@@ -1,7 +1,7 @@
 resource "aws_sagemaker_notebook_instance" "basic" {
   name                  = "FraudDetectionNotebookInstance"
   role_arn              = aws_iam_role.sm_notebook_instance_role.arn
-  instance_type         = "ml.t2.medium"
+  instance_type         = "ml.t3.medium"
   lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.basic_lifecycle.name
 
   tags = {
