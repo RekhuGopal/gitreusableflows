@@ -55,3 +55,5 @@ resource "aws_iam_policy" "fraud_detection_firehose_policy" {
 }
 EOF
 }
+
+## demo
