@@ -84,7 +84,7 @@ resource "aws_sagemaker_model" "sgmmodel" {
   execution_role_arn = "${aws_iam_role.sgmrole.arn}"
 
   primary_container {
-    image = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/kmeans:1"
+    image = "public.ecr.aws/w0a5d6u7/hello-node-task:latest"
     model_data_url = "https://s3-us-east-1.amazonaws.com/${aws_s3_bucket.buckettostoremodel.bucket}/model.tar.gz"
   }
 }
