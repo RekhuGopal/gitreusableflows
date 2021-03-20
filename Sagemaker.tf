@@ -84,7 +84,7 @@ resource "aws_sagemaker_model" "sgmmodel" {
   execution_role_arn = "${aws_iam_role.sgmrole.arn}"
 
   primary_container {
-    image = "public.ecr.aws/aws-ec2/aws-node-termination-handler:v1.12.1"
+    image = "357171621133.dkr.ecr.us-east-1.amazonaws.com/hello-world"
     model_data_url = "https://s3-us-east-1.amazonaws.com/${aws_s3_bucket.buckettostoremodel.bucket}/model.tar.gz"
   }
 }
