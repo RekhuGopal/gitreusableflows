@@ -87,10 +87,6 @@ resource "aws_sagemaker_model" "sgmmodel" {
     image = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/foo:latest"
     model_data_url = "https://s3-us-east-1.amazonaws.com/${aws_s3_bucket.buckettostoremodel.bucket}/model.tar.gz"
   }
-
-  tags {
-    Name = "cqpocs"
-  }
 }
 
 resource "aws_sagemaker_endpoint_configuration" "sgmakerconfig" {
