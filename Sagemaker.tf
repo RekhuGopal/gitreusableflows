@@ -109,3 +109,5 @@ resource "aws_sagemaker_endpoint" "sgmakerendpoint1" {
   name = "terraform-sagemaker-endpoint1"
   endpoint_config_name = "${aws_sagemaker_endpoint_configuration.sgmakerconfig.name}"
 }
+
+##
