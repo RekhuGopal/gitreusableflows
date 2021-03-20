@@ -100,8 +100,8 @@ resource "aws_sagemaker_endpoint_configuration" "sgmakerconfig" {
     initial_variant_weight  = 1
   }
 
-  tags {
-    Name = "cqpocs"
+  tags = {
+    Name = "sgmaker-1"
   }
 }
 
