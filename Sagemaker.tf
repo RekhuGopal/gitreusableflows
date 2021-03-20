@@ -56,8 +56,8 @@ data "aws_iam_policy_document" "policydef" {
       "s3:GetObject"
     ]
     resources = [
-      "arn:aws:s3:::${aws_s3_bucket.foo.bucket}",
-      "arn:aws:s3:::${aws_s3_bucket.foo.bucket}/*"
+      "arn:aws:s3:::${aws_s3_bucket.buckettostoremodel.bucket}",
+      "arn:aws:s3:::${aws_s3_bucket.buckettostoremodel.bucket}/*"
     ]
   }
 }
