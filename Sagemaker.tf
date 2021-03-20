@@ -84,7 +84,7 @@ resource "aws_sagemaker_model" "sgmmodel" {
   execution_role_arn = "${aws_iam_role.sgmrole.arn}"
 
   primary_container {
-    image = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/foo:latest"
+    image = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/kmeans:1"
     model_data_url = "https://s3-us-east-1.amazonaws.com/${aws_s3_bucket.buckettostoremodel.bucket}/model.tar.gz"
   }
 }
@@ -108,8 +108,4 @@ resource "aws_sagemaker_endpoint_configuration" "sgmakerconfig" {
 resource "aws_sagemaker_endpoint" "sgmakerendpoint1" {
   name = "terraform-sagemaker-endpoint1"
   endpoint_config_name = "${aws_sagemaker_endpoint_configuration.sgmakerconfig.name}"
-
-  tags = {
-    Name = "sgmaker-1"
-  }
 }
