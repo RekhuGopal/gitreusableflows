@@ -36,3 +36,5 @@ resource "aws_iam_group" "G2" {
 resource "aws_iam_group" "G3" {
   name = "group3"
 }
+
+##
