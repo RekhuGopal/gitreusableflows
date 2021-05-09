@@ -6,7 +6,7 @@ resource "aws_ssm_document" "cqpocsssmdocument" {
   content = <<DOC
   {
     "schemaVersion": "1.2",
-    "description": "Check ip configuration of a Linux instance.",
+    "description": "To restart mysql service.",
     "parameters": {
 
     },
@@ -15,7 +15,7 @@ resource "aws_ssm_document" "cqpocsssmdocument" {
         "properties": [
           {
             "id": "0.aws:runShellScript",
-            "runCommand": ["ifconfig"]
+            "runCommand": ["sudo service mysql start"]
           }
         ]
       }
