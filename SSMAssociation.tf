@@ -27,7 +27,7 @@ DOC
 ## Create SSM Association
 resource "aws_ssm_association" "cqpocsssmassociation" {
   name = aws_ssm_document.cqpocsssmdocument.name
-  schedule_expression = "0 8 * * *"
+  schedule_expression = 0 8 * * *
   targets {
     key    = "tag:run_ssm_document"
     values = ["yes"]
