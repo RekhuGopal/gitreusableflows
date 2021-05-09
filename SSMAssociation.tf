@@ -30,6 +30,6 @@ resource "aws_ssm_association" "cqpocsssmassociation" {
 
   targets {
     key    = "tag:run_ssm_document"
-    values = "yes"
+    values = ["yes"]
   }
 }
