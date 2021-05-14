@@ -8,7 +8,7 @@ resource "aws_cloudtrail" "awscloudtrailcqpocs" {
 }
 
 resource "aws_s3_bucket" "cqpocs" {
-  bucket        = "tf-test-trail-bucket"
+  bucket        = "tf-test-trail-bucket-cqpocs"
   force_destroy = true
 
   policy = <<POLICY
@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "cqpocs" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::tf-test-trail-bucket"
+            "Resource": "arn:aws:s3:::tf-test-trail-bucket-cqpocs"
         },
         {
             "Sid": "AWSCloudTrailWrite",
@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "cqpocs" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::tf-test-trail-bucket/cloudtrailkey/AWSLogs/${data.aws_caller_identity.current.account_id}/*",
+            "Resource": "arn:aws:s3:::tf-test-trail-bucket-cqpocs/cloudtrailkey/AWSLogs/${data.aws_caller_identity.current.account_id}/*",
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"
