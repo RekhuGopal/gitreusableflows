@@ -4,7 +4,16 @@ resource "aws_cloudtrail" "awscloudtrailcqpocs" {
   name                          = "tf-based-cloud-trail"
   s3_bucket_name                = aws_s3_bucket.cqpocs.id
   s3_key_prefix                 = "cloudtrailkey"
-  include_global_service_events = true
+  include_global_service_events = false
+  event_selector {
+    read_write_type           = "All"
+    include_management_events = true
+
+    data_resource {
+      type   = "AWS::S3::Object"
+      values = ["arn:aws:s3:::"]
+    }
+  }
 }
 
 resource "aws_s3_bucket" "cqpocs" {
