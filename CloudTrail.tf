@@ -1,10 +1,14 @@
 data "aws_caller_identity" "current" {}
 
+resource "aws_cloudwatch_log_group" "awss3bucketloggroups" {
+  name = "s3-bucketlog-group"
+}
+
 resource "aws_cloudtrail" "awscloudtrailcqpocs" {
   name                          = "tf-based-cloud-trail"
   s3_bucket_name                = aws_s3_bucket.cqpocs.id
   s3_key_prefix                 = "cloudtrailkey"
-  include_global_service_events = false
+  include_global_service_events = true
   event_selector {
     read_write_type           = "All"
     include_management_events = true
@@ -14,6 +18,7 @@ resource "aws_cloudtrail" "awscloudtrailcqpocs" {
       values = ["arn:aws:s3:::"]
     }
   }
+  cloud_watch_logs_group_arn = "${aws_cloudwatch_log_group.awss3bucketloggroups.arn}:*" # CloudTrail requires the Log Stream wildcard
 }
 
 resource "aws_s3_bucket" "cqpocs" {
