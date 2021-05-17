@@ -1,8 +1,5 @@
 data "aws_caller_identity" "current" {}
 
-# -----------------------------------------------------------
-# setup permissions to allow cloudtrail to write to cloudwatch
-# -----------------------------------------------------------
 resource "aws_iam_role" "cloudtrail_cqpocsrole" {
   name = "cloudtrail-to-cloudwatch"
 
@@ -60,7 +57,7 @@ resource "aws_cloudtrail" "awscloudtrailcqpocs" {
   s3_bucket_name                = aws_s3_bucket.cqpocs.id
   s3_key_prefix                 = "cloudtrailkey"
   include_global_service_events = true
-  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.awss3bucketloggroups.arn
+  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.awss3bucketloggroups.id
   event_selector {
     read_write_type           = "All"
     include_management_events = true
