@@ -4,16 +4,16 @@ resource "aws_dynamodb_table" "cqpocs-dynamodb-table" {
   billing_mode   = "PAY_PER_REQUEST"
   read_capacity  = 1
   write_capacity = 1
-  hash_key       = "BusinessId"
-  range_key      = "BusinesTitle"
+  hash_key       = "BusinessOwnerId"
+  range_key      = "BusinessTitle"
 
   attribute {
-    name = "BusinessId"
+    name = "BusinessOwnerId"
     type = "S"
   }
 
   attribute {
-    name = "BusinesTitle"
+    name = "BusinessTitle"
     type = "S"
   }
 
@@ -34,7 +34,7 @@ resource "aws_dynamodb_table" "cqpocs-dynamodb-table" {
     write_capacity     = 10
     read_capacity      = 10
     projection_type    = "INCLUDE"
-    non_key_attributes = ["BusinessId"]
+    non_key_attributes = ["BusinessOwnerId"]
   }
 
   tags = {
