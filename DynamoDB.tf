@@ -2,39 +2,19 @@
 resource "aws_dynamodb_table" "cqpocs-dynamodb-table" {
   name           = "BusinessPerformance"
   billing_mode   = "PAY_PER_REQUEST"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "BusinessOwnerId"
-  range_key      = "BusinessTitle"
+  read_capacity  = 10
+  write_capacity = 10
+  hash_key       = "Artist"
+  range_key      = "Song Title"
 
   attribute {
-    name = "BusinessOwnerId"
+    name = "Artist"
     type = "S"
   }
 
   attribute {
-    name = "BusinessTitle"
+    name = "Song Title"
     type = "S"
-  }
-
-  attribute {
-    name = "TopScore"
-    type = "N"
-  }
-
-  ttl {
-    attribute_name = "TimeToExist"
-    enabled        = false
-  }
-
-  global_secondary_index {
-    name               = "BusinessTitleIndex"
-    hash_key           = "BusinessTitle"
-    range_key          = "TopScore"
-    write_capacity     = 10
-    read_capacity      = 10
-    projection_type    = "INCLUDE"
-    non_key_attributes = ["BusinessOwnerId"]
   }
 
   tags = {
