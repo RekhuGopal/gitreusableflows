@@ -225,7 +225,7 @@ resource "aws_iam_service_linked_role" "es" {
 
 resource "aws_elasticsearch_domain" "es" {
   domain_name = local.elk_domain
-  elasticsearch_version = "7.7"
+  elasticsearch_version = "7.10"
 
   cluster_config {
       instance_count = 3
