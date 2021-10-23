@@ -1,12 +1,20 @@
 ## backend data for terraform
 terraform {
-  # Terraform version at the time of writing this post
-  required_version = ">= 0.12.24"
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+  }
 
-  backend "s3" {
-    bucket = "cloudquickpocsbackendtf"
-    key    = "quickcloudpocsbackend_2.tfstate"
-    region = "us-east-1"
+  backend "remote" {
+  organization = "CloudQuickPOCs"
+
+    workspaces {
+      name = "AWS-CloudQuickPOCs"
+    }
   }
 }
 
