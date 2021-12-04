@@ -1,7 +1,7 @@
 on:
   pull_request:
-    paths:
-    - app/**
+    branches:
+    - FeatureBranch1
   push:
     branches:
     - main
@@ -48,7 +48,7 @@ jobs:
 
     # Only push to registry on master
     - name: Push
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       run: |
         # Push image to AWS ECR
         docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE
