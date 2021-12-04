@@ -44,7 +44,7 @@ jobs:
     - name: Setup ECR
       run: |
         # Login to AWS ECR
-        $( aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/fastapi-example )
+        $( aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/fastapi-example )
     - name: Build and tag the image
       run: |
         # Build and tag the image
