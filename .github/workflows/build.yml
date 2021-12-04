@@ -6,12 +6,10 @@ on:
   push:
     paths:
     - app/**
-    branches:         # array of glob patterns matching against refs/heads. Optional; defaults to all
-    - master          # triggers on pushes that contain changes in master
+    branches:
+    - master 
 
 name: Build and Push to ECR
-
-# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 env:
   AWS_DEFAULT_REGION: us-east-1
   AWS_DEFAULT_OUTPUT: json
@@ -39,21 +37,17 @@ jobs:
         unzip awscliv2.zip
         sudo ./aws/install --update
     
-    # Add steps here like linting, testing, minification, etc.
-
     - name: Setup ECR
       run: |
         # Login to AWS ECR
         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/fastapi-example
-        #$( aws ecr get-login --no-include-email )
+
     - name: Build and tag the image
       run: |
         # Build and tag the image
         docker build \
           -t $CONTAINER_IMAGE \
           -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE ./app
-
-    # Add additional steps here like scanning of image
 
     # Only push to registry on master
     - name: Push
