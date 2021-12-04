@@ -3,8 +3,6 @@ on:
     paths:
     - app/**
   push:
-    paths:
-    - app/**
     branches:
     - main
 
