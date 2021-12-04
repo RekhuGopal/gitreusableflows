@@ -7,7 +7,7 @@ on:
     paths:
     - app/**
     branches:
-    - master 
+    - main
 
 name: Build and Push to ECR
 env:
