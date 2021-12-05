@@ -1,10 +1,8 @@
 on:
-  pull_request:
-    branches:
-    - FeatureBranch1
   push:
     branches:
     - main
+    - FeatureBranch1
 
 name: Build and Push to ECR
 env:
