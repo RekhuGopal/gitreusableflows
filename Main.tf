@@ -4,24 +4,26 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
-    random = {
-      source = "hashicorp/random"
-    }
   }
 
   backend "remote" {
-  organization = "CloudQuickPOCs"
+  organization = "CloudQuickLabs"
 
     workspaces {
-      name = "AWS-CloudQuickPOCs"
+      name = "AWSBackup"
     }
   }
 }
 
-## random provider
-provider "random" {}
-
-## Provider us-east-1
 provider "aws" {
   region = "us-east-1"
+}
+
+module "BackupIAM" {
+  source = "./BackupIAM"
+}
+
+module "BackupInfra" {
+  source = "./BackupInfra"
+  depends_on = [module.BackupIAM]
 }
