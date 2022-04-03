@@ -38,7 +38,7 @@ resource "aws_iam_role" "lab-backup-service-role" {
   assume_role_policy = data.aws_iam_policy_document.lab-backup-service-assume-role-policy-doc.json
 
   tags = {
-    Project = var.project
+    Project = "CloudQuickLabsDemo"
     Role    = "iam"
   }
 }

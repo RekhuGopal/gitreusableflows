@@ -8,7 +8,7 @@ locals {
 resource "aws_backup_vault" "lab-backup-vault" {
   name = "lab-backup-vault"
   tags = {
-    Project = var.project
+    Project = "CloudQuickLabsDemo"
     Role    = "backup-vault"
   }
 }
@@ -28,14 +28,14 @@ resource "aws_backup_plan" "lab-backup-plan" {
     }
 
     recovery_point_tags = {
-      Project = var.project
+      Project = "CloudQuickLabsDemo"
       Role    = "backup"
       Creator = "aws-backups"
     }
   }
 
   tags = {
-    Project = var.project
+    Project = "CloudQuickLabsDemo"
     Role    = "backup"
   }
 }
