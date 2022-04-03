@@ -4,9 +4,6 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
-    random = {
-      source = "hashicorp/random"
-    }
   }
 
   backend "remote" {
@@ -16,13 +13,4 @@ terraform {
       name = "AWSBackup"
     }
   }
-}
-
-## random provider
-provider "random" {}
-
-## Provider us-east-1
-provider "aws" {
-  profile = "default"
-  region = "us-east-1"
 }
