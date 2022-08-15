@@ -1,20 +1,19 @@
-## backend data for terraform
 terraform {
+  required_version = ">= 1.1.0"
   required_providers {
-    aws = {
-      source = "hashicorp/aws"
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "~> 3.0.2"
     }
   }
-
-  backend "remote" {
-  organization = "CloudQuickLabs"
-
+  cloud {
+    organization = "CloudQuickLabs"
     workspaces {
-      name = "AWSBackup"
+      name = "AzureLabs"
     }
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
+provider "azurerm" {
+  features {}
 }
