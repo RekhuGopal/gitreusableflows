@@ -3,6 +3,7 @@ resource "azurerm_resource_group" "demo" {
   location = "West Europe"
 }
 
+##  Demo now
 resource "azurerm_storage_account" "StorageAccountDemo" {
   name                     = "satestant000012"
   resource_group_name      = azurerm_resource_group.demo.name
