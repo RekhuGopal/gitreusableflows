@@ -1,4 +1,4 @@
-name: "01_Foundation"
+name: "01_IAMRoles"
 on:
   workflow_dispatch:
 

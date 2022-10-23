@@ -1,4 +1,4 @@
-name: "01_Foundation"
+name: "02_S3Bucket"
 on:
   workflow_dispatch:
 
