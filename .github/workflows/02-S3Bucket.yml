@@ -4,7 +4,7 @@ on:
 
 jobs:
   Plan_Dev:
-    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@master
+    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@FeatureBranch1
     with:
       path: S3Bucket
       tf_version: latest
@@ -15,7 +15,7 @@ jobs:
 
   Deploy_Dev:
     needs: Plan_Dev
-    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_apply.yml@master
+    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_apply.yml@FeatureBranch1
     with:
       path: S3Bucket
       tf_version: latest
@@ -24,7 +24,7 @@ jobs:
       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
   Plan_Uat:
-    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@master
+    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@main
     with:
       path: S3Bucket
       tf_version: latest
@@ -35,7 +35,7 @@ jobs:
 
   Deploy_Uat:
     needs: Plan_Uat
-    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_apply.yml@master
+    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_apply.yml@main
     with:
       path: S3Bucket
       tf_version: latest
