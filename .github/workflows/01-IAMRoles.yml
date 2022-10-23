@@ -1,0 +1,48 @@
+name: "01_Foundation"
+on:
+  workflow_dispatch:
+
+jobs:
+  Plan_Dev:
+    uses: azureiac.github.io/.github/workflows/aws_tf_plan.yml@master
+    with:
+      path: IAMRoles
+      tf_version: latest
+      tf_vars_file: dev.tfvars
+      tf_key: iamroles-dev
+      enable_TFSEC: true
+    secrets:
+      cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+  Deploy_Dev:
+    needs: Plan_Dev
+    uses: azureiac.github.io/.github/workflows/aws_tf_apply.yml@master
+    with:
+      path: IAMRoles
+      tf_version: latest
+      tf_key: iamroles-dev
+      gh_environment: dev
+    secrets:
+      cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+  Plan_Uat:
+    uses: azureiac.github.io/.github/workflows/aws_tf_plan.yml@master
+    with:
+      path: IAMRoles
+      tf_version: latest
+      tf_vars_file: uat.tfvars
+      tf_key: iamroles-uat
+      enable_TFSEC: true
+    secrets:
+      cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+  Deploy_Uat:
+    needs: Plan_Uat
+    uses: azureiac.github.io/.github/workflows/aws_tf_apply.yml@master
+    with:
+      path: IAMRoles
+      tf_version: latest
+      tf_key: iamroles-uat
+      gh_environment: uat
+    secrets:
+      cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
