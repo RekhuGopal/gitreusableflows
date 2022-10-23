@@ -1,0 +1,60 @@
+### Reusable workflow to download terraform artifact built by `az_tf_plan` and apply the artifact/plan ###
+name: "Apply_TF_Plan"
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: 'Specifies the path of the root terraform module.'
+        required: true
+        type: string
+      tf_version:
+        description: 'Specifies version of Terraform to use. e.g: 1.1.0 Default=latest.'
+        required: false
+        type: string
+        default: latest
+      tf_key:
+        description: 'Specifies the Terraform state file name. Workflow artifact will be the same name.'
+        required: true
+        type: string
+      gh_environment:
+        description: 'Specifies the GitHub deployment environment.'
+        required: false
+        type: string
+        default: null
+    secrets:
+      cli_config_credentials_token:
+        description: 'cli config credentials token'
+        required: true
+
+jobs:
+  apply-plan:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.gh_environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.path }}
+    env:
+
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: ${{ inputs.tf_key }}
+          path: ${{ inputs.path }}
+
+      - name: Decompress TF Plan artifact
+        run: unzip ${{ inputs.tf_key }}.zip
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.2
+        with:
+          terraform_version: ${{ inputs.tf_version }}
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply plan.tfplan
