@@ -7,7 +7,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@FeatureBranch1
     with:
       path: S3Bucket
-      tf_version: latest
       tf_vars_file: dev.tfvars
       enable_TFSEC: true
     secrets:
@@ -18,7 +17,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_deploy.yml@FeatureBranch1
     with:
       path: S3Bucket
-      tf_version: latest
       gh_environment: dev
     secrets:
       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -27,7 +25,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@main
     with:
       path: S3Bucket
-      tf_version: latest
       tf_vars_file: uat.tfvars
       enable_TFSEC: true
     secrets:
@@ -38,7 +35,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_deploy.yml@main
     with:
       path: S3Bucket
-      tf_version: latest
       gh_environment: uat
     secrets:
       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
