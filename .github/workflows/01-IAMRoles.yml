@@ -7,7 +7,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@FeatureBranch1
     with:
       path: IAMRoles
-      tf_version: latest
       tf_vars_file: dev.tfvars
       tf_key: iamroles-dev
       enable_TFSEC: true
@@ -19,7 +18,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_deploy.yml@FeatureBranch1
     with:
       path: IAMRoles
-      tf_version: latest
       tf_key: iamroles-dev
       gh_environment: dev
     secrets:
@@ -29,7 +27,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@main
     with:
       path: IAMRoles
-      tf_version: latest
       tf_vars_file: uat.tfvars
       tf_key: iamroles-uat
       enable_TFSEC: true
@@ -41,7 +38,6 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_deploy.yml@main
     with:
       path: IAMRoles
-      tf_version: latest
       tf_key: iamroles-uat
       gh_environment: uat
     secrets:
