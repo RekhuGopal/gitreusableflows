@@ -15,7 +15,7 @@ jobs:
 
   Deploy_Dev:
     needs: Plan_Dev
-    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_apply.yml@FeatureBranch1
+    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_deploy.yml@FeatureBranch1
     with:
       path: S3Bucket
       tf_version: latest
@@ -35,7 +35,7 @@ jobs:
 
   Deploy_Uat:
     needs: Plan_Uat
-    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_apply.yml@main
+    uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_deploy.yml@main
     with:
       path: S3Bucket
       tf_version: latest
