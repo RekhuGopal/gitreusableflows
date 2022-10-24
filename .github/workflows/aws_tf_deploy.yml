@@ -34,8 +34,6 @@ jobs:
       run:
         shell: bash
         working-directory: ${{ inputs.path }}
-    env:
-
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3.0.0
