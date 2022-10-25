@@ -12,10 +12,6 @@ on:
         required: false
         type: string
         default: latest
-      tf_key:
-        description: 'Specifies the Terraform state file name. Workflow artifact will be the same name.'
-        required: true
-        type: string
       gh_environment:
         description: 'Specifies the GitHub deployment environment.'
         required: false
