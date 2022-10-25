@@ -35,15 +35,6 @@ jobs:
         shell: bash
         working-directory: ${{ inputs.path }}
     steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v3.0.0
-        with:
-          name: ${{ inputs.tf_key }}
-          path: ${{ inputs.path }}
-
-      - name: Decompress TF Plan artifact
-        run: unzip ${{ inputs.tf_key }}.zip
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.2
         with:
@@ -55,4 +46,4 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply
-        run: terraform apply plan.tfplan
+        run: terraform apply
