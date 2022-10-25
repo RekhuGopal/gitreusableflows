@@ -31,6 +31,13 @@ jobs:
         shell: bash
         working-directory: ${{ inputs.path }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
+        
+      - name: Commit files
+        run: | 
+          mv ${{ github.workspace }}/${{ inputs.path }}/${{ inputs.gh_environment }}.tfvars  ${{ github.workspace }}/${{ inputs.path }}/${{ inputs.gh_environment }}.auto.tfvars 
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.2
         with:
@@ -40,6 +47,19 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+      
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
 
       - name: Terraform Apply
         run: terraform apply
