@@ -17,6 +17,10 @@ on:
         required: false
         type: string
         default: null
+      tf_vars_file:
+        description: 'Specifies the Terraform TFVARS file.'
+        required: true
+        type: string
     secrets:
       cli_config_credentials_token:
         description: 'cli config credentials token'
