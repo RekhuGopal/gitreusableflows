@@ -8,6 +8,7 @@ jobs:
     with:
       path: IAMRoles
       tf_vars_file: dev.tfvars
+      gh_environment: dev
     secrets:
       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
@@ -25,6 +26,7 @@ jobs:
     with:
       path: IAMRoles
       tf_vars_file: uat.tfvars
+      gh_environment: uat
     secrets:
       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
