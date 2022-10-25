@@ -40,6 +40,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.1.0
+        run: mv ${{ inputs.path }}/${{ inputs.gh_environment }}.tfvars ${{ inputs.path }}/${{ inputs.gh_environment }}.auto.tfvars 
+
+      - name: Commit files
+      run: |
+        git config --local user.email "vrchinnarathod@gmail.com"
+        git config --local user.name "RekhuGopal"
+        git commit -m "renamed to auto.tfvars" -a
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.2
