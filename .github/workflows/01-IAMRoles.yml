@@ -24,7 +24,7 @@ jobs:
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@main
     with:
       path: IAMRoles
-      enable_TFSEC: true
+      tf_vars_file: uat.tfvars
     secrets:
       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
