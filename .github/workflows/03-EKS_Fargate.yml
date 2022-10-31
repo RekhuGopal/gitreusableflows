@@ -1,4 +1,4 @@
-name: "EKS_Fargate"
+name: "03-EKS_Fargate"
 on:
   workflow_dispatch:
 
