@@ -1,4 +1,4 @@
-name: "03-EKS_Fargate"
+name: "EKS_Fargate"
 on:
   workflow_dispatch:
 
@@ -7,7 +7,7 @@ jobs:
     if: github.ref == 'refs/heads/FeatureBranch1'
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@FeatureBranch1
     with:
-      path: 03-EKS_Fargate
+      path: EKS_Fargate
       tf_vars_file: dev.tfvars
       gh_environment: dev
     secrets:
@@ -17,7 +17,7 @@ jobs:
     needs: Plan_Dev
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_appy.yml@FeatureBranch1
     with:
-      path: 03-EKS_Fargate
+      path: EKS_Fargate
       tf_vars_file: dev.tfvars
       gh_environment: dev
     secrets:
@@ -27,7 +27,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_plan.yml@main
     with:
-      path: 03-EKS_Fargate
+      path: EKS_Fargate
       tf_vars_file: uat.tfvars
       gh_environment: uat
     secrets:
@@ -37,7 +37,7 @@ jobs:
     needs: Plan_Uat
     uses: RekhuGopal/gitreusableflows/.github/workflows/aws_tf_appy.yml@main
     with:
-      path: 03-EKS_Fargate
+      path: EKS_Fargate
       tf_vars_file: uat.tfvars
       gh_environment: uat
     secrets:
