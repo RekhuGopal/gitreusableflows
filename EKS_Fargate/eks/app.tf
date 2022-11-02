@@ -3,7 +3,7 @@
  and a fargate profile
 */
 
-/*
+
 resource "aws_iam_role_policy_attachment" "AmazonEKSFargatePodExecutionRolePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
   role       = aws_iam_role.fargate_pod_execution_role.name
@@ -155,4 +155,3 @@ resource "kubernetes_ingress" "app" {
 
   depends_on = [kubernetes_service.app]
 }
-*/
