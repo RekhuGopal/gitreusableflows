@@ -50,3 +50,5 @@ module "ingress" {
   vpc_id       = module.vpc.id
   cluster_id   = module.eks.cluster_id
 }
+
+##  aws eks delete-fargate-profile --cluster-name eks-demo-cql-dev --fargate-profile-name fp-default
