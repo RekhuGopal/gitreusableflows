@@ -47,7 +47,7 @@ provider "kubernetes" {
 #  availability_zones = var.availability_zones
 #}
 
-module "eks" {
+#module "eks" {
 #  source          = "./eks"
 #  name            = var.name
 #  environment     = var.environment
