@@ -26,6 +26,7 @@ data "aws_eks_cluster_auth" "cluster" {
   name = aws_eks_cluster.main.id
 }
 
+/*
 resource "aws_iam_policy" "AmazonEKSClusterCloudWatchMetricsPolicy" {
   name   = "AmazonEKSClusterCloudWatchMetricsPolicy"
   policy = <<EOF
@@ -246,3 +247,4 @@ output "cluster_id" {
   description = "ID of the created cluster"
   value       = aws_eks_cluster.main.id
 }
+*/

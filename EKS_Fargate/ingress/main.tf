@@ -20,6 +20,7 @@ data "aws_eks_cluster_auth" "cluster" {
 
 data "aws_caller_identity" "current" {}
 
+/*
 resource "aws_iam_policy" "ALBIngressControllerIAMPolicy" {
   name   = "ALBIngressControllerIAMPolicy"
   policy = <<POLICY
@@ -331,3 +332,4 @@ resource "kubernetes_deployment" "ingress" {
 
   depends_on = [kubernetes_cluster_role_binding.ingress]
 }
+*/
