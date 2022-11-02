@@ -141,7 +141,7 @@ resource "aws_eks_cluster" "main" {
 
 # Fetch OIDC provider thumbprint for root CA
 data "external" "thumbprint" {
-  program =    ["${path.module}/oidc_thumbprint.sh", var.region]
+  program =    ["${{ github.workspace }}/EKS_Fargate/${path.module}/oidc_thumbprint.sh", var.region]
   depends_on = [aws_eks_cluster.main]
 }
 
@@ -223,7 +223,7 @@ resource "aws_eks_node_group" "main" {
 }
 
 data "template_file" "kubeconfig" {
-  template = file("${path.module}/templates/kubeconfig.tpl")
+  template = file("${{ github.workspace }}/EKS_Fargate/${path.module}/templates/kubeconfig.tpl")
 
   vars = {
     kubeconfig_name           = "eks_${aws_eks_cluster.main.name}"
