@@ -20,9 +20,25 @@ provider "aws" {
   region  = var.region
 }
 
+provider "local" {
+  version = "~> 1.4"
+}
+
+provider "template" {
+  version = "~> 2.1"
+}
+
+provider "external" {
+  version = "~> 1.2"
+}
+
+provider "kubernetes" {
+  load_config_file       = false
+  version                = "~> 1.10"
+}
 
 #module "vpc" {
-#  source             = "./vpc"
+# source             = "./vpc"
 #  name               = var.name
 #  environment        = var.environment
 #  cidr               = var.cidr
@@ -31,7 +47,7 @@ provider "aws" {
 #  availability_zones = var.availability_zones
 #}
 
-#module "eks" {
+module "eks" {
 #  source          = "./eks"
 #  name            = var.name
 #  environment     = var.environment
