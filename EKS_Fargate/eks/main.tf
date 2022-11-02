@@ -141,7 +141,7 @@ resource "aws_eks_cluster" "main" {
 
 # Fetch OIDC provider thumbprint for root CA
 data "external" "thumbprint" {
-  program =    ["${{ github.workspace }}/EKS_Fargate/${path.module}/oidc_thumbprint.sh", var.region]
+  program    = ["${{ github.workspace }}/EKS_Fargate/${path.module}/oidc_thumbprint.sh", var.region]
   depends_on = [aws_eks_cluster.main]
 }
 
