@@ -1,54 +1,52 @@
-terraform {
-	required_providers {
-		aws = {
-			source = "hashicorp/aws"
-		}
-	}
-
-	backend "remote" {
-		hostname = "app.terraform.io"
-		organization = "CloudQuickLabs"
-
-		workspaces {
-			name = "AWSBackup"
-		}
-	}
-}
-
 provider "aws" {
-  version = "~> 2.44"
-  region  = var.region
+  region = "us-east-1"
+  profile = "default"
 }
 
 module "vpc" {
- source             = "./vpc"
-  name               = var.name
-  environment        = var.environment
-  cidr               = var.cidr
-  private_subnets    = var.private_subnets
-  public_subnets     = var.public_subnets
-  availability_zones = var.availability_zones
+    source                              = "./vpc"
+    environment                         =  var.environment
+    vpc_cidr                            =  var.vpc_cidr
+    vpc_name                            =  var.vpc_name
+    cluster_name                        =  var.cluster_name
+    public_subnets_cidr                 =  var.public_subnets_cidr
+    availability_zones_public           =  var.availability_zones_public
+    private_subnets_cidr                =  var.private_subnets_cidr
+    availability_zones_private          =  var.availability_zones_private
+    cidr_block-nat_gw                   =  var.cidr_block-nat_gw
+    cidr_block-internet_gw              =  var.cidr_block-internet_gw
 }
+
 
 module "eks" {
-  source          = "./eks"
-  name            = var.name
-  environment     = var.environment
-  region          = var.region
-  k8s_version     = var.k8s_version
-  vpc_id          = module.vpc.id
-  private_subnets = module.vpc.private_subnets
-  public_subnets  = module.vpc.public_subnets
-  kubeconfig_path = var.kubeconfig_path
+    source                              =  "./eks"
+    cluster_name                        =  var.cluster_name
+    environment                         =  var.environment
+    eks_node_group_instance_types       =  var.eks_node_group_instance_types
+    private_subnets                     =  module.vpc.aws_subnets_private
+    public_subnets                      =  module.vpc.aws_subnets_public
+    fargate_namespace                   =  var.fargate_namespace
 }
 
-module "ingress" {
-  source       = "./ingress"
-  name         = var.name
-  environment  = var.environment
-  region       = var.region
-  vpc_id       = module.vpc.id
-  cluster_id   = module.eks.cluster_id
+
+module "kubernetes" {
+    source                              =  "./kubernetes"
+    cluster_id                          =  module.eks.cluster_id    
+    vpc_id                              =  module.vpc.vpc_id
+    cluster_name                        =  module.eks.cluster_name
 }
 
-##  aws eks delete-fargate-profile --cluster-name eks-demo-cql-dev --fargate-profile-name fp-default
+module "database" {
+    source                              =  "./database"
+    secret_id                           =  var.secret_id
+    identifier                          =  var.identifier
+    allocated_storage                   =  var.allocated_storage
+    storage_type                        =  var.storage_type
+    engine                              =  var.engine
+    engine_version                      =  var.engine_version
+    instance_class                      =  var.instance_class
+    database_name                       =  var.database_name
+    environment                         =  var.environment
+    vpc_id                              =  module.vpc.vpc_id
+    private_subnets                     =  module.vpc.aws_subnets_private
+}
