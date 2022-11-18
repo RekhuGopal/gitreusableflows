@@ -38,7 +38,7 @@ resource "aws_db_instance" "db" {
   db_subnet_group_name   = aws_db_subnet_group.Groups.name
   vpc_security_group_ids = [aws_security_group.data.id]
   username               = "duser"
-  password               = "MySuPer8@34345"
+  password               = "MySuPerfdsfdf"
 
 
  depends_on = [ aws_db_subnet_group.Groups, aws_security_group.data ]
