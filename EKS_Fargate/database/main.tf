@@ -25,15 +25,6 @@ resource "aws_security_group" "data" {
 
 }
 
-data "aws_secretsmanager_secret_version" "credentials" {
-  secret_id     = "${var.secret_id}"
-}
- 
-locals {
-  cred = jsondecode(
-    data.aws_secretsmanager_secret_version.credentials.secret_string
-  )
-}
 
 resource "aws_db_instance" "db" {
   identifier             = "${var.identifier}-${var.environment}"
@@ -46,8 +37,8 @@ resource "aws_db_instance" "db" {
   publicly_accessible    = false
   db_subnet_group_name   = aws_db_subnet_group.Groups.name
   vpc_security_group_ids = [aws_security_group.data.id]
-  username               = local.cred.username
-  password               = local.cred.password
+  username               = "duser"
+  password               = "MySuPer8@d1$"
 
 
  depends_on = [ aws_db_subnet_group.Groups, aws_security_group.data ]
