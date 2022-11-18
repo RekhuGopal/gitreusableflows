@@ -3,6 +3,23 @@ provider "aws" {
   profile = "default"
 }
 
+terraform {
+	required_providers {
+		aws = {
+			source = "hashicorp/aws"
+		}
+	}
+
+	backend "remote" {
+		hostname = "app.terraform.io"
+		organization = "CloudQuickLabs"
+
+		workspaces {
+			name = "AWSBackup"
+		}
+	}
+}
+
 module "vpc" {
     source                              = "./vpc"
     environment                         =  var.environment
