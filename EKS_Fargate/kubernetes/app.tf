@@ -70,7 +70,7 @@ resource "kubernetes_service" "app" {
   depends_on = [kubernetes_deployment.app]
 }
 
-resource "kubernetes_ingress_v1" "app" {
+resource "kubernetes_ingress" "app" {
   metadata {
     name      = "owncloud-lb"
     namespace = "fargate-node"
