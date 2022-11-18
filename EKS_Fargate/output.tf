@@ -14,5 +14,5 @@ output "database_endpoint" {
 }
 
 output "server_dns" {
-    value = [data.kubernetes_ingress.address.load_balancer_ingress]
+    value = [data.kubernetes_ingress.address.status.0.load_balancer.0.ingress.0.hostname]
 }
