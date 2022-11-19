@@ -39,10 +39,9 @@ resource "aws_iam_policy" "AmazonEKSClusterCloudWatchMetricsPolicy" {
 EOF
 }
 
-
 resource "aws_iam_role" "eks_cluster_role" {
   name = "${var.cluster_name}-cluster-role"
-  description = "Allow cluster to manage node groups, fargate nodes and cloudwatch logs"
+  description = "Allow cluster to manage node groups and cloudwatch logs"
   force_detach_policies = true
   assume_role_policy = <<POLICY
 {
@@ -52,9 +51,7 @@ resource "aws_iam_role" "eks_cluster_role" {
       "Effect": "Allow",
       "Principal": {
         "Service": [
-          "eks.amazonaws.com",
-          "eks-fargate-pods.amazonaws.com"
-          ]
+          "eks.amazonaws.com"          ]
       },
       "Action": "sts:AssumeRole"
     }
@@ -87,64 +84,6 @@ resource "aws_cloudwatch_log_group" "cloudwatch_log_group" {
   }
 }
 
-resource "aws_eks_fargate_profile" "eks_fargate" {
-  cluster_name           = aws_eks_cluster.eks_cluster.name
-  fargate_profile_name   = "${var.cluster_name}-${var.environment}-fargate-profile"
-  pod_execution_role_arn = aws_iam_role.eks_fargate_role.arn
-  subnet_ids             = var.private_subnets
-
-  selector {
-    namespace = "${var.fargate_namespace}"
-  }
-
-  
-
-  timeouts {
-    create   = "30m"
-    delete   = "30m"
-  }
-}
-
-resource "aws_iam_role" "eks_fargate_role" {
-  name = "${var.cluster_name}-fargate_cluster_role"
-  description = "Allow fargate cluster to allocate resources for running pods"
-  force_detach_policies = true
-  assume_role_policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": [
-          "eks.amazonaws.com",
-          "eks-fargate-pods.amazonaws.com"
-          ]
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-POLICY
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonEKSFargatePodExecutionRolePolicy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
-  role       = aws_iam_role.eks_fargate_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.eks_fargate_role.name
-}
-
-
-resource "aws_iam_role_policy_attachment" "AmazonEKSVPCResourceController" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
-  role       = aws_iam_role.eks_fargate_role.name
-}
-
-
 
 resource "aws_eks_node_group" "eks_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
@@ -154,7 +93,7 @@ resource "aws_eks_node_group" "eks_node_group" {
 
   scaling_config {
     desired_size = 1
-    max_size     = 1
+    max_size     = 2
     min_size     = 1
   }
 
