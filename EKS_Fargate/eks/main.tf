@@ -1,4 +1,4 @@
-
+/*
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "${var.cluster_name}-${var.environment}"
    
@@ -145,5 +145,4 @@ resource "aws_iam_openid_connect_provider" "main" {
   thumbprint_list = [data.tls_certificate.auth.certificates[0].sha1_fingerprint]
   url             = aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer
 }
-
-
+*/

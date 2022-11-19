@@ -19,6 +19,7 @@ terraform {
 	}
 }
 
+/*
 module "vpc" {
     source                              = "./vpc"
     environment                         =  var.environment
@@ -32,8 +33,9 @@ module "vpc" {
     cidr_block-nat_gw                   =  var.cidr_block-nat_gw
     cidr_block-internet_gw              =  var.cidr_block-internet_gw
 }
+*/
 
-
+/*
 module "eks" {
     source                              =  "./eks"
     cluster_name                        =  var.cluster_name
@@ -43,15 +45,15 @@ module "eks" {
     public_subnets                      =  module.vpc.aws_subnets_public
     fargate_namespace                   =  var.fargate_namespace
 }
-
-
+*/
+/*
 module "kubernetes" {
     source                              =  "./kubernetes"
     cluster_id                          =  module.eks.cluster_id    
     vpc_id                              =  module.vpc.vpc_id
     cluster_name                        =  module.eks.cluster_name
 }
-
+*/
 /*
 module "database" {
     source                              =  "./database"
