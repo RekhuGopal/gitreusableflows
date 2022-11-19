@@ -236,8 +236,7 @@ resource "kubernetes_deployment" "ingress" {
     namespace = "kube-system"
     labels    = {
       "app.kubernetes.io/name"       = "alb-ingress-controller"
-      "app.kubernetes.io/version"    = "v1.1.6"
-      "app.kubernetes.io/managed-by" = "terraform"
+      "app.kubernetes.io/version"    = "v2.2.3"
     }
   }
 
@@ -254,7 +253,7 @@ resource "kubernetes_deployment" "ingress" {
       metadata {
         labels = {
           "app.kubernetes.io/name"    = "alb-ingress-controller"
-          "app.kubernetes.io/version" = "v1.1.6"
+          "app.kubernetes.io/version" = "v2.2.3"
         }
       }
 
@@ -266,7 +265,7 @@ resource "kubernetes_deployment" "ingress" {
 
         container {
           name              = "alb-ingress-controller"
-          image             = "docker.io/amazon/aws-alb-ingress-controller:v1.1.6"
+          image             = "docker.io/amazon/aws-alb-ingress-controller:v2.2.3"
           image_pull_policy = "Always"
           
           args = [
