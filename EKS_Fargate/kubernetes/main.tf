@@ -15,6 +15,7 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.cluster.token
 }
 
+/*
 resource "aws_iam_policy" "ALB-policy" {
   name   = "ALBIngressControllerIAMPolicy"
   policy = <<POLICY
@@ -294,6 +295,6 @@ resource "kubernetes_deployment" "ingress" {
 
   depends_on = [kubernetes_cluster_role_binding.ingress]
 }
-
+*/
 
 

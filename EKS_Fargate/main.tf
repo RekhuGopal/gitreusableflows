@@ -52,6 +52,7 @@ module "kubernetes" {
     cluster_name                        =  module.eks.cluster_name
 }
 
+/*
 module "database" {
     source                              =  "./database"
     secret_id                           =  var.secret_id
@@ -66,3 +67,4 @@ module "database" {
     vpc_id                              =  module.vpc.vpc_id
     private_subnets                     =  module.vpc.aws_subnets_private
 }
+*/

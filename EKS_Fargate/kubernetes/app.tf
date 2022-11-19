@@ -1,3 +1,4 @@
+/*
 resource "kubernetes_namespace" "fargate" {
   metadata {
     labels = {
@@ -112,3 +113,4 @@ resource "kubernetes_ingress_v1" "app" {
 
   depends_on = [kubernetes_service.app]
 }
+*/
