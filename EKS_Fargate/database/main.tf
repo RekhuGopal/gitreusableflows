@@ -39,6 +39,7 @@ resource "aws_db_instance" "db" {
   vpc_security_group_ids = [aws_security_group.data.id]
   username               = "duser"
   password               = "MySuPerfdsfdf"
+  skip_final_snapshot    =  true
 
 
  depends_on = [ aws_db_subnet_group.Groups, aws_security_group.data ]
