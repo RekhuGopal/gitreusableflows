@@ -1,4 +1,4 @@
-ami = "ami-04706e771f950937f"
+ami = "ami-test"
 instance_type = "t2.micro"
 key_name = "GitHubRunner"
 github_repo_url = "https://github.com/RekhuGopal/GitHub-Action-OIDCConnect.git"

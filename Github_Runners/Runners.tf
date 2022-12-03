@@ -2,12 +2,21 @@ data "aws_availability_zones" "all_azs" {
   state = "available"
 }
 
+data "aws_ami" "amazon-linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn-ami-hvm-*-x86_64-ebs"]
+  }
+}
 
 resource "aws_launch_template" "ec2_launch_template" {
   name        = "github_runner_launch_template"
   description = "Launch Template for GitHub Runners EC2 AutoScaling Group"
 
-  image_id      = var.ami
+  image_id      = data.aws_ami.amazon-linux.id
   instance_type = var.instance_type
   key_name      = var.key_name
 
