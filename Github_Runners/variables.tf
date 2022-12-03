@@ -52,3 +52,8 @@ variable "max_size" {
   type        = number
   default     = 1
 }
+
+variable "labels" {
+  description = "A list of additional labels to attach to the runner instance"
+  type        = list(string)
+}
