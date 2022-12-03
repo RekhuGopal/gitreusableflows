@@ -11,7 +11,7 @@ resource "aws_launch_template" "ec2_launch_template" {
   instance_type = var.instance_type
   key_name      = var.key_name
 
-  user_data = base64encode(templatefile("${path.cwd}/bootstrap.tmpl", { github_repo_url = var.github_repo_url, github_repo_pat_token = var.github_repo_pat_token, runner_name = var.runner_name, labels = join(",", var.labels) }))
+  user_data = base64encode(templatefile("${path.cwd}/bootstrap.tmpl", { github_repo_url = var.github_repo_url, github_repo_pat_token = var.github_repo_pat_token, runner_name = var.runner_name, labels = var.labels }))
 
   tags = {
     Name = "github_runner"
