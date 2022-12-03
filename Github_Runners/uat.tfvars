@@ -1,0 +1,6 @@
+ami = "ami-04706e771f950937f"
+instance_type = "t2.micro"
+key_name = "GitHubRunner"
+github_repo_url = "https://github.com/RekhuGopal/GitHub-Action-OIDCConnect.git"
+github_repo_pat_token = "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"
+runner_name = "cloudquicklabs"

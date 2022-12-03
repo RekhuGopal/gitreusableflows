@@ -1,14 +1,3 @@
-/*
-  Ingress controller, taken from https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html
-*/
-
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.cluster.token
-  load_config_file       = false
-  version                = "~> 1.10"
-}
 
 data "aws_eks_cluster" "cluster" {
   name = var.cluster_id
@@ -20,8 +9,14 @@ data "aws_eks_cluster_auth" "cluster" {
 
 data "aws_caller_identity" "current" {}
 
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
+}
+
 /*
-resource "aws_iam_policy" "ALBIngressControllerIAMPolicy" {
+resource "aws_iam_policy" "ALB-policy" {
   name   = "ALBIngressControllerIAMPolicy"
   policy = <<POLICY
 {
@@ -172,8 +167,8 @@ resource "aws_iam_role" "eks_alb_ingress_controller" {
 ROLE
 }
 
-resource "aws_iam_role_policy_attachment" "ALBIngressControllerIAMPolicy" {
-  policy_arn = aws_iam_policy.ALBIngressControllerIAMPolicy.arn
+resource "aws_iam_role_policy_attachment" "ALB-policy_attachment" {
+  policy_arn = aws_iam_policy.ALB-policy.arn
   role       = aws_iam_role.eks_alb_ingress_controller.name
 }
 
@@ -242,8 +237,7 @@ resource "kubernetes_deployment" "ingress" {
     namespace = "kube-system"
     labels    = {
       "app.kubernetes.io/name"       = "alb-ingress-controller"
-      "app.kubernetes.io/version"    = "v1.1.5"
-      "app.kubernetes.io/managed-by" = "terraform"
+      "app.kubernetes.io/version"    = "v2.2.3"
     }
   }
 
@@ -260,7 +254,7 @@ resource "kubernetes_deployment" "ingress" {
       metadata {
         labels = {
           "app.kubernetes.io/name"    = "alb-ingress-controller"
-          "app.kubernetes.io/version" = "v1.1.5"
+          "app.kubernetes.io/version" = "v2.2.3"
         }
       }
 
@@ -272,60 +266,29 @@ resource "kubernetes_deployment" "ingress" {
 
         container {
           name              = "alb-ingress-controller"
-          image             = "docker.io/amazon/aws-alb-ingress-controller:v1.1.5"
+          image             = "docker.io/amazon/aws-alb-ingress-controller:v2.2.3"
           image_pull_policy = "Always"
           
           args = [
             "--ingress-class=alb",
-            "--cluster-name=${data.aws_eks_cluster.cluster.id}",
+            "--cluster-name=${var.cluster_name}",
             "--aws-vpc-id=${var.vpc_id}",
-            "--aws-region=${var.region}",
+            "--aws-region=us-east-1",
             "--aws-max-retries=10",
-          ]
-
-          volume_mount {
+          ] 
+           volume_mount {
             mount_path = "/var/run/secrets/kubernetes.io/serviceaccount"
             name       = kubernetes_service_account.ingress.default_secret_name
             read_only  = true
           }
-
-          port {
-            name           = "health"
-            container_port = 10254
-            protocol       = "TCP"
-          }
-
-          readiness_probe {
-            http_get {
-              path   = "/healthz"
-              port   = "health"
-              scheme = "HTTP"
-            }
-
-            initial_delay_seconds = 30
-            period_seconds        = 60
-            timeout_seconds       = 3
-          }
-
-          liveness_probe {
-            http_get {
-              path   = "/healthz"
-              port   = "health"
-              scheme = "HTTP"
-            }
-
-            initial_delay_seconds = 60
-            period_seconds        = 60
-          }
         }
-
         volume {
           name = kubernetes_service_account.ingress.default_secret_name
 
           secret {
             secret_name = kubernetes_service_account.ingress.default_secret_name
-          }
-        }
+           }
+         }
       }
     }
   }
@@ -333,3 +296,5 @@ resource "kubernetes_deployment" "ingress" {
   depends_on = [kubernetes_cluster_role_binding.ingress]
 }
 */
+
+
