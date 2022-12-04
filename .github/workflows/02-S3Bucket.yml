@@ -1,4 +1,4 @@
-name: "01_S3Bucket"
+name: "02-S3Bucket"
 on:
   workflow_dispatch:
 

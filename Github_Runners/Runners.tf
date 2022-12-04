@@ -11,7 +11,7 @@ data "aws_ami" "amazon-linux" {
     values = ["amzn-ami-hvm-*-x86_64-ebs"]
   }
 }
-/*
+
 resource "aws_launch_template" "ec2_launch_template" {
   name        = "github_runner_launch_template"
   description = "Launch Template for GitHub Runners EC2 AutoScaling Group"
@@ -38,4 +38,3 @@ resource "aws_autoscaling_group" "github_runners_autoscaling_group" {
     version = "$Latest"
   }
 }
-*/
