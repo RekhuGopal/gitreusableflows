@@ -27,7 +27,7 @@ resource "aws_elastic_beanstalk_application_version" "eb_app_ver" {
 resource "aws_elastic_beanstalk_environment" "tfenv" {
   name                = "enes-eb-tf-env"
   application         = aws_elastic_beanstalk_application.eb_app.name             # Elastic Beanstalk application name
-  solution_stack_name = "64bit Amazon Linux 2 v3.3.11 running Python 3.8"         # Define current version of the platform
+  solution_stack_name = "64bit Amazon Linux 2 v3.4.4 running Python 3.8"         # Define current version of the platform
   description         = "environment for flask app"                               # Define environment description
   version_label       = aws_elastic_beanstalk_application_version.eb_app_ver.name # Define version label
 
