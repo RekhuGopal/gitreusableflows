@@ -1,0 +1,2 @@
+environment = "prod"
+project     = "enes"
