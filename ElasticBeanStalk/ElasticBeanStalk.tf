@@ -1,6 +1,6 @@
 # Create S3 bucket for Python Flask app
 resource "aws_s3_bucket" "eb_bucket" {
-  bucket = "enes-eb-python-flask" # Name of S3 bucket to create for Flask app deployment needs to be unique 
+  bucket = "enes-eb-python-flask-0123" # Name of S3 bucket to create for Flask app deployment needs to be unique 
 }
 
 # Define App files to be uploaded to S3
