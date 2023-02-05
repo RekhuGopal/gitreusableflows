@@ -10,7 +10,7 @@ terraform {
 		organization = "CloudQuickLabs"
 
 		workspaces {
-			name = "AWSBackup"
+			name = "ElasticBeans"
 		}
 	}
 }
