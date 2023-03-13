@@ -4,6 +4,4 @@ provider "aws" {
 
 module "sns_topics" {
   source = "AWS-Multi-Region-Deployment/SNS"
-  
-  topic_display_name = "My SNS Topic"
 }
