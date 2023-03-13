@@ -1,6 +1,7 @@
+/*
 # Create S3 bucket for Python Flask app
 resource "aws_s3_bucket" "eb_bucket" {
-  bucket = "enes-eb-python-flask" # Name of S3 bucket to create for Flask app deployment needs to be unique 
+  bucket = "enes-eb-python-flask-0123" # Name of S3 bucket to create for Flask app deployment needs to be unique 
 }
 
 # Define App files to be uploaded to S3
@@ -27,7 +28,7 @@ resource "aws_elastic_beanstalk_application_version" "eb_app_ver" {
 resource "aws_elastic_beanstalk_environment" "tfenv" {
   name                = "enes-eb-tf-env"
   application         = aws_elastic_beanstalk_application.eb_app.name             # Elastic Beanstalk application name
-  solution_stack_name = "64bit Amazon Linux 2 v3.3.11 running Python 3.8"         # Define current version of the platform
+  solution_stack_name = "64bit Amazon Linux 2 v3.4.4 running Python 3.8"         # Define current version of the platform
   description         = "environment for flask app"                               # Define environment description
   version_label       = aws_elastic_beanstalk_application_version.eb_app_ver.name # Define version label
 
@@ -37,3 +38,4 @@ resource "aws_elastic_beanstalk_environment" "tfenv" {
     value     = "aws-elasticbeanstalk-ec2-role"       # Define value
   }
 }
+*/
