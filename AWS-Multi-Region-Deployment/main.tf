@@ -1,6 +1,13 @@
+provider "aws" {
+  for_each = var.aws_regions
+
+  region = each.value
+}
+
 module "sns_topics" {
   source = "./SNS"
-  aws_region = var.region
-  aws_regions = var.aws_regions
+  for_each = var.regions
+
+  aws_region = each.value
   aws_sns_topic_name = var.aws_sns_topic_name
 }
