@@ -1,4 +1,4 @@
-name: "06_AWS_Multi_Region_Deployment"
+name: "01_AWSMultiRegionDeployment"
 on:
   workflow_dispatch:
 
