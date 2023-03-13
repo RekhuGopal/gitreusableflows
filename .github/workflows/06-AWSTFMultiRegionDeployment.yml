@@ -1,4 +1,4 @@
-name: "01_AWSMultiRegionDeployment"
+name: "06_AWSMultiRegionDeployment"
 on:
   workflow_dispatch:
 
