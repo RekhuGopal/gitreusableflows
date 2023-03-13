@@ -9,6 +9,7 @@ resource "aws_sns_topic" "example" {
   display_name   = "Multi Region SNS Topic"
   provider = {
     aws = "aws.${var.aws_regions[count.index]}"
+    alias   = "${var.aws_regions[count.index]}"
   }
 }
 
