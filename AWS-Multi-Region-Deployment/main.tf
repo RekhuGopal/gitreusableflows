@@ -5,6 +5,6 @@ provider "aws" {
 module "sns_topics" {
   source = "./SNS"
 
-  aws_region = var.aws_regions
+  aws_regions = var.aws_regions
   aws_sns_topic_name = var.aws_sns_topic_name
 }
