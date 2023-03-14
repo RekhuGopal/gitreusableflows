@@ -1,7 +1,7 @@
 resource "aws_sns_topic" "example" {
-  for_each = var.aws_regions
+  count = length(var.aws_regions)
 
-  name           = "${var.aws_sns_topic_name}-${each.value}"
+  name           = "${var.aws_sns_topic_name}-${var.aws_regions[count.index]}"
   display_name   = "Multi Region SNS Topic"
 }
 
