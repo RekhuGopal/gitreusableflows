@@ -1,3 +1,4 @@
+/*
 resource "aws_sns_topic" "example" {
   count = length(var.aws_regions)
 
@@ -8,3 +9,4 @@ resource "aws_sns_topic" "example" {
 output "sns_topic_arns" {
   value = aws_sns_topic.example.*.arn
 }
+*/
