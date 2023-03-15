@@ -11,7 +11,7 @@ module "us-east-2" {
   aws_region = "us-east-2"
   aws_sns_topic_name = var.aws_sns_topic_name
   providers = {
-    aws = "aws.us-east-2"
+    aws.us-east-2 = aws.us-east-2
    }
 }
 
@@ -22,7 +22,7 @@ module "us-west-1" {
   aws_region = "us-west-1"
   aws_sns_topic_name = var.aws_sns_topic_name
   providers = {
-    aws = "aws.us-west-1"
+    aws.us-west-1 = aws.us-west-1
    }
 }
 
@@ -32,6 +32,6 @@ module "us-west-2" {
   aws_region = "us-west-2"
   aws_sns_topic_name = var.aws_sns_topic_name
   providers = {
-    aws = "aws.us-west-2"
+    aws.us-west-2 = aws.us-west-2
    }
 }
