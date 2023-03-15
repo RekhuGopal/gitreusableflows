@@ -3,9 +3,6 @@ module "us-east-1" {
 
   aws_region = "us-east-1"
   aws_sns_topic_name = var.aws_sns_topic_name
-  providers = {
-    aws = "aws"
-   }
 }
 
 module "us-east-2" {
