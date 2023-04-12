@@ -67,3 +67,10 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+      - name: Capture Output in .txt file
+        run: terraform output > ${{ github.workspace }}/output.txt
+
+      - name:  Display Out put file
+        run: |
+         cat ${{ github.workspace }}/output.txt
