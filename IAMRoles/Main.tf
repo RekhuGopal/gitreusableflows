@@ -10,11 +10,11 @@ terraform {
 		organization = "CloudQuickLabs"
 
 		workspaces {
-			name = "AWSBackup"
+			name = "AWSEKS"
 		}
 	}
 }
 
 provider "aws" {
-	region = "us-east-1"
+	region = "us-west-2"
 }
